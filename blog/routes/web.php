@@ -22,7 +22,7 @@ Route::get('/', 'Main@main');
 
 Route::get('/sub/company', 'Sub@company');
 Route::get('/sub/business', 'Sub@business');
-Route::get('/sub/beds/sub', 'Sub@beds_sub');
+Route::get('/sub/equipment', 'Sub@equipment');
 Route::get('/sub/contact_us', 'Sub@contact_us');
 Route::get('/sub/heritage01', 'Sub@heritage01');
 Route::get('/sub/heritage02', 'Sub@heritage02');

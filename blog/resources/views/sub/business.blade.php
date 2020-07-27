@@ -19,3 +19,4 @@
         <img src="/img/business_01.png" alt="">
     </div>
 </div>
+@include('/inc/footer')

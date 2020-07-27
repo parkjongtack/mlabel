@@ -30,6 +30,12 @@ class Sub extends Controller
 		return view('sub/business'); 
 
 	}
+	
+	public function business(Request $request) {
+
+		return view('sub/equipment'); 
+
+	}
 
 	public function acc(Request $request) {
 
