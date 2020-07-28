@@ -31,9 +31,39 @@ class Sub extends Controller
 
 	}
 	
-	public function business(Request $request) {
+	public function equipment(Request $request) {
 
 		return view('sub/equipment'); 
+
+	}
+
+	public function product(Request $request) {
+
+		return view('sub/product'); 
+
+	}
+
+	public function product_view(Request $request) {
+
+		return view('sub/product_view'); 
+
+	}
+
+	public function notice(Request $request) {
+
+		return view('sub/notice');
+
+	}
+
+	public function notice_write(Request $request) {
+
+		return view('sub/notice_write');
+
+	}
+
+	public function notice_view(Request $request) {
+
+		return view('sub/notice_view');
 
 	}
 

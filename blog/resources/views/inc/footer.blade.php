@@ -5,7 +5,7 @@
                     <ul>
                         <li><a href="#none">서비스 이용약관</a></li>
                         <li><a href="#none">개인정보처리방침</a></li>
-                        <li><a href="#none">오시는 길</a></li>
+                        <li><a href="#none">인재채용</a></li>
                         <li><a href="#none">관리자 로그인</a></li>
                     </ul>
                     <div class="sns_con">

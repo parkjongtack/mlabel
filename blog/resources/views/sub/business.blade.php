@@ -14,9 +14,15 @@
                 <li>파우치 인쇄</li>
             </ul>
         </div>
-    </div>
-    <div class="landing">
-        <img src="/img/business_01.png" alt="">
+        <div class="landing sub_layout on">
+            <img src="/img/business_01.png" alt="">
+        </div>
+        <div class="landing sub_layout">
+            <img src="/img/business_03.png" alt="">
+        </div>
+        <div class="landing sub_layout">
+            <img src="/img/business_02.png" alt="">
+        </div>
     </div>
 </div>
 @include('/inc/footer')

@@ -23,16 +23,20 @@ Route::get('/', 'Main@main');
 Route::get('/sub/company', 'Sub@company');
 Route::get('/sub/business', 'Sub@business');
 Route::get('/sub/equipment', 'Sub@equipment');
-Route::get('/sub/contact_us', 'Sub@contact_us');
+Route::get('/sub/product', 'Sub@product');
+Route::get('/sub/product_view', 'Sub@product_view');
+Route::get('/sub/notice1', 'Sub@notice');
+Route::get('/sub/inquiry1', 'Sub@notice');
+Route::get('/sub/inquiry2', 'Sub@notice');
+Route::get('/sub/notice2', 'Sub@notice');
+Route::get('/sub/notice_write', 'Sub@notice_write');
+Route::get('/sub/notice_view', 'Sub@notice_view');
+
 Route::get('/sub/heritage01', 'Sub@heritage01');
 Route::get('/sub/heritage02', 'Sub@heritage02');
 Route::get('/sub/heritage03', 'Sub@heritage03');
 Route::get('/sub/materials', 'Sub@materials');
 Route::get('/sub/media_view', 'Sub@media_view');
-Route::get('/sub/notice', 'Sub@news');
-Route::get('/sub/press', 'Sub@news');
-Route::get('/sub/media', 'Sub@news');
-Route::get('/sub/contact_us', 'Sub@contact_us');
 
 Route::get('/ey_admin/priority_change', 'Ey_admin@priority_change');
 //Route::get('/ey_admin/acc', 'Ey_admin@ey_acc');
