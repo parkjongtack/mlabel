@@ -32,12 +32,6 @@ Route::get('/sub/notice2', 'Sub@notice');
 Route::get('/sub/notice_write', 'Sub@notice_write');
 Route::get('/sub/notice_view', 'Sub@notice_view');
 
-Route::get('/sub/heritage01', 'Sub@heritage01');
-Route::get('/sub/heritage02', 'Sub@heritage02');
-Route::get('/sub/heritage03', 'Sub@heritage03');
-Route::get('/sub/materials', 'Sub@materials');
-Route::get('/sub/media_view', 'Sub@media_view');
-
 Route::get('/ey_admin/priority_change', 'Ey_admin@priority_change');
 //Route::get('/ey_admin/acc', 'Ey_admin@ey_acc');
 Route::post('/file_upload', 'Ey_admin@file_upload');
@@ -59,38 +53,58 @@ Route::get('/ey_admin/popup/write_board_form', 'Ey_admin@write_board_form');
 Route::post('/ey_admin/popup/write_board_action', 'Ey_admin@write_board_action');
 Route::get('/ey_admin/popup/write_board_form/modify', 'Ey_admin@write_board_form');
 
-Route::get('/ey_admin/press', 'Ey_admin@ey_board_list');
-Route::post('/ey_admin/press/control', 'Ey_admin@ey_control');
-Route::get('/ey_admin/press/write_board_form', 'Ey_admin@write_board_form');
-Route::post('/ey_admin/press/write_board_action', 'Ey_admin@write_board_action');
-Route::get('/ey_admin/press/write_board_form/modify', 'Ey_admin@write_board_form');
+Route::get('/ey_admin/section', 'Ey_admin@ey_board_list');
+Route::post('/ey_admin/section/control', 'Ey_admin@ey_control');
+Route::get('/ey_admin/section/write_board_form', 'Ey_admin@write_board_form');
+Route::post('/ey_admin/section/write_board_action', 'Ey_admin@write_board_action');
+Route::get('/ey_admin/section/write_board_form/modify', 'Ey_admin@write_board_form');
+
+Route::get('/ey_admin/label', 'Ey_admin@ey_board_list');
+Route::post('/ey_admin/label/control', 'Ey_admin@ey_control');
+Route::get('/ey_admin/label/write_board_form', 'Ey_admin@write_board_form');
+Route::post('/ey_admin/label/write_board_action', 'Ey_admin@write_board_action');
+Route::get('/ey_admin/label/write_board_form/modify', 'Ey_admin@write_board_form');
+
+Route::get('/ey_admin/pouch', 'Ey_admin@ey_board_list');
+Route::post('/ey_admin/pouch/control', 'Ey_admin@ey_control');
+Route::get('/ey_admin/pouch/write_board_form', 'Ey_admin@write_board_form');
+Route::post('/ey_admin/pouch/write_board_action', 'Ey_admin@write_board_action');
+Route::get('/ey_admin/pouch/write_board_form/modify', 'Ey_admin@write_board_form');
+
+Route::get('/ey_admin/inquiry', 'Ey_admin@ey_board_list');
+Route::post('/ey_admin/inquiry/control', 'Ey_admin@ey_control');
+Route::post('/ey_admin/inquiry/control_file', 'Ey_admin@ey_control_file');
+Route::get('/ey_admin/inquiry/write_board_form', 'Ey_admin@write_board_form');
+Route::post('/ey_admin/inquiry/write_board_action', 'Ey_admin@write_board_action');
+Route::get('/ey_admin/inquiry/write_board_form/modify', 'Ey_admin@write_board_form');
 
 Route::get('/ey_admin/notice', 'Ey_admin@ey_board_list');
 Route::post('/ey_admin/notice/control', 'Ey_admin@ey_control');
+Route::post('/ey_admin/notice/control_file', 'Ey_admin@ey_control_file');
 Route::get('/ey_admin/notice/write_board_form', 'Ey_admin@write_board_form');
 Route::post('/ey_admin/notice/write_board_action', 'Ey_admin@write_board_action');
 Route::get('/ey_admin/notice/write_board_form/modify', 'Ey_admin@write_board_form');
 
-Route::get('/ey_admin/beds', 'Ey_admin@ey_board_list');
-Route::post('/ey_admin/beds/control', 'Ey_admin@ey_control');
-Route::post('/ey_admin/beds/control_file', 'Ey_admin@ey_control_file');
-Route::get('/ey_admin/beds/write_board_form', 'Ey_admin@write_board_form');
-Route::post('/ey_admin/beds/write_board_action', 'Ey_admin@write_board_action');
-Route::get('/ey_admin/beds/write_board_form/modify', 'Ey_admin@write_board_form');
+Route::get('/ey_admin/equipment', 'Ey_admin@ey_board_list');
+Route::post('/ey_admin/equipment/control', 'Ey_admin@ey_control');
+Route::post('/ey_admin/equipment/control_file', 'Ey_admin@ey_control_file');
+Route::get('/ey_admin/equipment/write_board_form', 'Ey_admin@write_board_form');
+Route::post('/ey_admin/equipment/write_board_action', 'Ey_admin@write_board_action');
+Route::get('/ey_admin/equipment/write_board_form/modify', 'Ey_admin@write_board_form');
 
-Route::get('/ey_admin/acc', 'Ey_admin@ey_board_list');
-Route::post('/ey_admin/acc/control', 'Ey_admin@ey_control');
-Route::post('/ey_admin/acc/control_file', 'Ey_admin@ey_control_file');
-Route::get('/ey_admin/acc/write_board_form', 'Ey_admin@write_board_form');
-Route::post('/ey_admin/acc/write_board_action', 'Ey_admin@write_board_action');
-Route::get('/ey_admin/acc/write_board_form/modify', 'Ey_admin@write_board_form');
+Route::get('/ey_admin/sale_label', 'Ey_admin@ey_board_list');
+Route::post('/ey_admin/sale_label/control', 'Ey_admin@ey_control');
+Route::post('/ey_admin/sale_label/control_file', 'Ey_admin@ey_control_file');
+Route::get('/ey_admin/sale_label/write_board_form', 'Ey_admin@write_board_form');
+Route::post('/ey_admin/sale_label/write_board_action', 'Ey_admin@write_board_action');
+Route::get('/ey_admin/sale_label/write_board_form/modify', 'Ey_admin@write_board_form');
 
-Route::get('/ey_admin/media', 'Ey_admin@ey_board_list');
-Route::post('/ey_admin/media/control', 'Ey_admin@ey_control');
-Route::post('/ey_admin/media/control_file', 'Ey_admin@ey_control_file');
-Route::get('/ey_admin/media/write_board_form', 'Ey_admin@write_board_form');
-Route::post('/ey_admin/media/write_board_action', 'Ey_admin@write_board_action');
-Route::get('/ey_admin/media/write_board_form/modify', 'Ey_admin@write_board_form');
+Route::get('/ey_admin/sale_pouch', 'Ey_admin@ey_board_list');
+Route::post('/ey_admin/sale_pouch/control', 'Ey_admin@ey_control');
+Route::post('/ey_admin/sale_pouch/control_file', 'Ey_admin@ey_control_file');
+Route::get('/ey_admin/sale_pouch/write_board_form', 'Ey_admin@write_board_form');
+Route::post('/ey_admin/sale_pouch/write_board_action', 'Ey_admin@write_board_action');
+Route::get('/ey_admin/sale_pouch/write_board_form/modify', 'Ey_admin@write_board_form');
 
 //Route::get('/ey_admin/beds', 'Ey_admin@ey_press');
 //Route::get('/ey_admin/media', 'Ey_admin@ey_media');

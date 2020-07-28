@@ -35,16 +35,22 @@
                     <div class="na_title dep2">
                         <div class="nav_sub"><a href="/ey_admin/pcslider">슬라이드</a></div>
                         <div class="nav_sub"><a href="/ey_admin/popup">팝업</a></div>
+                        <div class="nav_sub"><a href="/ey_admin/section">퀄리티 섹션</a></div>
                         <!-- <div class="nav_sub"><a href="/ey_moslider">MOBILE 슬라이드</a></div>
                         <div class="nav_sub"><a href="/ey_mopopup">MOBILE 팝업</a></div> -->
                     </div>
-                    <div class="na_title nav_img"><i class="fas fa-comments"></i>카테고리</div>
+                    <div class="na_title nav_img"><i class="fas fa-comments"></i>게시판 관리</div>
                     <div class="na_title dep2">
-                        <div class="nav_sub"><a href="/ey_admin/beds">beds</a></div>
-                        <div class="nav_sub"><a href="/ey_admin/acc">acc</a></div>
-						<div class="nav_sub"><a href="/ey_admin/press">press</a></div>
-                        <div class="nav_sub"><a href="/ey_admin/media">media</a></div>
-                        <div class="nav_sub"><a href="/ey_admin/notice">notice</a></div>
+                        <div class="nav_sub"><a href="/ey_admin/label">라벨인쇄</a></div>
+                        <div class="nav_sub"><a href="/ey_admin/pouch">파우치인쇄</a></div>
+						<div class="nav_sub"><a href="/ey_admin/inquiry">문의게시판</a></div>
+                        <div class="nav_sub"><a href="/ey_admin/notice">공지사항</a></div>
+                    </div>
+                    <div class="na_title nav_img"><i class="fas fa-comments"></i>상품 관리</div>
+                    <div class="na_title dep2">
+                        <div class="nav_sub"><a href="/ey_admin/equipment">보유장비</a></div>
+                        <div class="nav_sub"><a href="/ey_admin/sale_label">라벨</a></div>
+						<div class="nav_sub"><a href="/ey_admin/sale_pouch">파우치</a></div>
                     </div>
                     <!-- <div class="na_title nav_img"><i class="far fa-chart-bar"></i>통계 현황</div>
                     <div class="na_title dep2">
