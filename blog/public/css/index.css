@@ -99,7 +99,7 @@ html,body{font-family: 'NanumSquare', sans-serif; position: relative;}
 a{text-decoration: none; color: inherit;}
 ul,li{list-style-type: none;}
 img{max-width: 100%; display: block; margin: 0 auto; outline: 0; border: 0;}
-a,p,span,h1,h2,h3,h4,h5,h6,td,th{letter-spacing: -0.5px;transform:skew(-0.001deg);}
+a,p,span,h1,h2,h3,h4,h5,h6,td,th{letter-spacing: -0.5px;transform:skew(-0.03deg);}
 .mo_none{display: block;}
 .mo_block{display: none;}
 #container{position: relative;}

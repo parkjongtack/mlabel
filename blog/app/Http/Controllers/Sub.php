@@ -18,52 +18,198 @@ use App\Classes\jsonRPCClient;
 
 class Sub extends Controller
 {
-	
+
+	// if(stripos($agent['userAgent'], 'android-web-app') !== false) {
+	// 	$device = 'webapp';
+	//  } else if(stripos($agent['userAgent'], 'Android') !== false) {
+	// 	$device = 'Android';
+	//  } else if(stripos($agent['userAgent'], 'iPhone') !== false) {
+	// 	$device = 'iPhone';
+	//  } else {
+	// 	$device = 'browser';
+	//  }
+
 	public function company(Request $request) {
 
-		return view('sub/company'); 
+		$commons = new CommonFunction();
+
+		$agent = $commons->getBrowser();
+		$device = "";
+		$walletSize = 0;
+		$curreny_id = !$request->cu ? '' : $request->cu;
+		
+		if(stripos($agent['userAgent'], 'android-web-app') !== false) {
+		   $device = 'Android';
+		} else if(stripos($agent['userAgent'], 'Android') !== false) {
+		   $device = 'Android';
+		} else if(stripos($agent['userAgent'], 'iPhone') !== false) {
+		   $device = 'iPhone';
+		} else {
+		   $device = 'browser';
+		}
+
+		return view($device == "browser" ? '/sub/company' : '/m/sub/company' , $request);
 
 	}
 
 	public function business(Request $request) {
 
-		return view('sub/business'); 
+		$commons = new CommonFunction();
+
+		$agent = $commons->getBrowser();
+		$device = "";
+		$walletSize = 0;
+		$curreny_id = !$request->cu ? '' : $request->cu;
+		
+		if(stripos($agent['userAgent'], 'android-web-app') !== false) {
+		   $device = 'Android';
+		} else if(stripos($agent['userAgent'], 'Android') !== false) {
+		   $device = 'Android';
+		} else if(stripos($agent['userAgent'], 'iPhone') !== false) {
+		   $device = 'iPhone';
+		} else {
+		   $device = 'browser';
+		}
+
+		return view($device == "browser" ? '/sub/business' : '/m/sub/business' , $request);
 
 	}
 	
 	public function equipment(Request $request) {
 
-		return view('sub/equipment'); 
+		$commons = new CommonFunction();
+
+		$agent = $commons->getBrowser();
+		$device = "";
+		$walletSize = 0;
+		$curreny_id = !$request->cu ? '' : $request->cu;
+		
+		if(stripos($agent['userAgent'], 'android-web-app') !== false) {
+		   $device = 'Android';
+		} else if(stripos($agent['userAgent'], 'Android') !== false) {
+		   $device = 'Android';
+		} else if(stripos($agent['userAgent'], 'iPhone') !== false) {
+		   $device = 'iPhone';
+		} else {
+		   $device = 'browser';
+		}
+
+		return view($device == "browser" ? '/sub/equipment' : '/m/sub/equipment' , $request);
 
 	}
 
 	public function product(Request $request) {
 
-		return view('sub/product'); 
+		$commons = new CommonFunction();
+
+		$agent = $commons->getBrowser();
+		$device = "";
+		$walletSize = 0;
+		$curreny_id = !$request->cu ? '' : $request->cu;
+		
+		if(stripos($agent['userAgent'], 'android-web-app') !== false) {
+		   $device = 'Android';
+		} else if(stripos($agent['userAgent'], 'Android') !== false) {
+		   $device = 'Android';
+		} else if(stripos($agent['userAgent'], 'iPhone') !== false) {
+		   $device = 'iPhone';
+		} else {
+		   $device = 'browser';
+		}
+
+		return view($device == "browser" ? '/sub/product' : '/m/sub/product' , $request);
 
 	}
 
 	public function product_view(Request $request) {
 
-		return view('sub/product_view'); 
+		$commons = new CommonFunction();
+
+		$agent = $commons->getBrowser();
+		$device = "";
+		$walletSize = 0;
+		$curreny_id = !$request->cu ? '' : $request->cu;
+		
+		if(stripos($agent['userAgent'], 'android-web-app') !== false) {
+		   $device = 'Android';
+		} else if(stripos($agent['userAgent'], 'Android') !== false) {
+		   $device = 'Android';
+		} else if(stripos($agent['userAgent'], 'iPhone') !== false) {
+		   $device = 'iPhone';
+		} else {
+		   $device = 'browser';
+		}
+
+		return view($device == "browser" ? '/sub/product_view' : '/m/sub/product_view' , $request);
 
 	}
 
 	public function notice(Request $request) {
 
-		return view('sub/notice');
+		$commons = new CommonFunction();
+
+		$agent = $commons->getBrowser();
+		$device = "";
+		$walletSize = 0;
+		$curreny_id = !$request->cu ? '' : $request->cu;
+		
+		if(stripos($agent['userAgent'], 'android-web-app') !== false) {
+		   $device = 'Android';
+		} else if(stripos($agent['userAgent'], 'Android') !== false) {
+		   $device = 'Android';
+		} else if(stripos($agent['userAgent'], 'iPhone') !== false) {
+		   $device = 'iPhone';
+		} else {
+		   $device = 'browser';
+		}
+
+		return view($device == "browser" ? '/sub/notice' : '/m/sub/notice' , $request);
 
 	}
 
 	public function notice_write(Request $request) {
 
-		return view('sub/notice_write');
+		$commons = new CommonFunction();
+
+		$agent = $commons->getBrowser();
+		$device = "";
+		$walletSize = 0;
+		$curreny_id = !$request->cu ? '' : $request->cu;
+		
+		if(stripos($agent['userAgent'], 'android-web-app') !== false) {
+		   $device = 'Android';
+		} else if(stripos($agent['userAgent'], 'Android') !== false) {
+		   $device = 'Android';
+		} else if(stripos($agent['userAgent'], 'iPhone') !== false) {
+		   $device = 'iPhone';
+		} else {
+		   $device = 'browser';
+		}
+
+		return view($device == "browser" ? '/sub/notice_write' : '/m/sub/notice_write' , $request);
 
 	}
 
 	public function notice_view(Request $request) {
 
-		return view('sub/notice_view');
+		$commons = new CommonFunction();
+
+		$agent = $commons->getBrowser();
+		$device = "";
+		$walletSize = 0;
+		$curreny_id = !$request->cu ? '' : $request->cu;
+		
+		if(stripos($agent['userAgent'], 'android-web-app') !== false) {
+		   $device = 'Android';
+		} else if(stripos($agent['userAgent'], 'Android') !== false) {
+		   $device = 'Android';
+		} else if(stripos($agent['userAgent'], 'iPhone') !== false) {
+		   $device = 'iPhone';
+		} else {
+		   $device = 'browser';
+		}
+
+		return view($device == "browser" ? '/sub/notice_view' : '/m/sub/notice_view' , $request);
 
 	}
 

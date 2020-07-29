@@ -2,10 +2,10 @@
 <div class="main_slider swiper-container">
     <div class="swiper-wrapper">
         <div class="swiper-slide">
-            <a href="#none"><img src="/img/main_slider_01.png" alt=""></a>
-        </div>
-        <div class="swiper-slide">
-            <a href="#none"><img src="/img/main_slider_01.png" alt=""></a>
+            @foreach($data as $data)
+            <a href="{{$data->link_value}}"><img src="/storage/app/images/{{$data->attach_file}}" alt=""></a>
+            @endforeach
+            
         </div>
     </div>
     <div class="swiper-pagination"></div>

@@ -21,6 +21,33 @@ class Main extends Controller
 
 	public function main(Request $request) {
 
+		$commons = new CommonFunction();
+
+		$agent = $commons->getBrowser();
+		$device = "";
+		$walletSize = 0;
+		$curreny_id = !$request->cu ? '' : $request->cu;
+		
+		if(stripos($agent['userAgent'], 'android-web-app') !== false) {
+		   $device = 'Android';
+		} else if(stripos($agent['userAgent'], 'Android') !== false) {
+		   $device = 'Android';
+		} else if(stripos($agent['userAgent'], 'iPhone') !== false) {
+		   $device = 'iPhone';
+		} else {
+		   $device = 'browser';
+		}
+		// if(stripos($agent['userAgent'], 'android-web-app') !== false) {
+		// 	$device = 'webapp';
+		//  } else if(stripos($agent['userAgent'], 'Android') !== false) {
+		// 	$device = 'Android';
+		//  } else if(stripos($agent['userAgent'], 'iPhone') !== false) {
+		// 	$device = 'iPhone';
+		//  } else {
+		// 	$device = 'browser';
+		//  }
+
+		// echo $device;
 		$board_list_pcslider_main = DB::table('board') 
 								->select(DB::raw('*, substr(reg_date, 1, 10) as reg_date_cut'))
 								->where('board_type', 'pcslider')
@@ -28,11 +55,12 @@ class Main extends Controller
 								//->where('end_period', '>=', date("Y-m-d"))
 								->where('use_status', 'Y')
 								->orderBy('priority','asc')
-								->get();			
+								->get();
 
 		$return_list['data'] = $board_list_pcslider_main;
 
-		return view('index', $return_list); 
+		return view($device == "browser" ? 'index' : 'm/index' , $return_list);
+		// return view('index', $return_list);
 
 	}
 
