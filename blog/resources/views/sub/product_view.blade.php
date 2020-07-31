@@ -2,8 +2,8 @@
 <div class="sub_sec product_view">
     <div class="sec_title">
         <div class="sec_title_inner">
-            <h2>회사소개</h2>
-            <p>명성라벨과 명성파우치(주)는 고객 만족을 위해 최선을 다합니다.</p>
+            <h2>라벨인쇄</h2>
+            <p>최고의 퀄리티를 위한 최상의 장비를 보유하고 있습니다.</p>
         </div>
     </div>
     <div class="inner">

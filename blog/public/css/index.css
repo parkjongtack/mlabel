@@ -262,7 +262,7 @@ a,p,span,h1,h2,h3,h4,h5,h6,td,th{letter-spacing: -0.5px;transform:skew(-0.03deg)
 .equipment_list{}
 
 /*product*/
-.sub_sec.product .sec_title{background-image: url(/img/sub_company_bg3.png);}
+.sub_sec.product .sec_title{background-image: url(/img/sub_company_bg4.png);}
 .product .sub_nav{top: -54px;}
 .product .sub_nav li{width: 25%; border-bottom: 1px solid #fff;}
 .product .sale_con li .sale_text_box{padding-bottom: 10px;}
@@ -285,6 +285,7 @@ a,p,span,h1,h2,h3,h4,h5,h6,td,th{letter-spacing: -0.5px;transform:skew(-0.03deg)
 .product_detail .info_detail h3{text-align: center; font-size: 24px; color: #4f4f4f; margin-bottom: 20px;}
 
 /*notice*/
+.sub_sec.notice .sec_title{background-image: url(/img/sub_company_bg5.png);}
 .notice .sub_nav li{width: 25%;}
 .notice_table{font-size: 18px;}
 .notice_table form{font-size: 0; text-align: right; margin-bottom: 45px;}
