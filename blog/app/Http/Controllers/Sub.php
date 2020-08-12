@@ -197,7 +197,18 @@ class Sub extends Controller
 		   $device = 'browser';
 		}
 
-		return view($device == "browser" ? '/sub/product_view' : '/m/sub/product_view' , $request);
+		$board_array = DB::table('board') 
+								->select(DB::raw('*, substr(reg_date, 1, 10) as reg_date_cut'))
+								->where('board_type', 'sale_pouch')
+								->where('use_status', 'Y')
+								->where('idx', $_GET['idx'])
+								->where('board_type', $_GET['board_type'])
+								->orderBy('idx','desc')
+								->get();
+
+		$return_list['board_array'] = $board_array;	
+
+		return view($device == "browser" ? '/sub/product_view' : '/m/sub/product_view' , $return_list);
 
 	}
 

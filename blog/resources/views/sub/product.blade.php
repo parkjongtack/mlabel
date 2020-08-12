@@ -36,7 +36,7 @@
 				 @if(request()->segment(3) == 'label')
 				 	@foreach($board_sale_label as $board_sale_label)
                     <li>
-                        <a href="#none">
+                        <a href="/sub/product_view?idx={{ $board_sale_label->idx }}&board_type={{ $board_sale_label->board_type }}">
                             <div class="sale_img_box">
                                 <img src="/storage/app/images/{{ $board_sale_label->attach_file }}" alt="">
                             </div>
@@ -50,7 +50,7 @@
 				@else
 					@foreach($board_sale_pouch as $board_sale_pouch)
                     <li>
-                        <a href="#none">
+                        <a href="/sub/product_view?idx={{ $board_sale_pouch->idx }}&board_type={{ $board_sale_pouch->board_type }}">
                             <div class="sale_img_box">
                                 <img src="/storage/app/images/{{ $board_sale_pouch->attach_file }}" alt="">
                             </div>
