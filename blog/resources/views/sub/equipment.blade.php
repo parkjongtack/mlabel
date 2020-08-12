@@ -1,5 +1,4 @@
 @include('/inc/head')
-@include('/sub/video_view')
 <div class="sub_sec equipment">
     <div class="sec_title">
         <div class="sec_title_inner">
