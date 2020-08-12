@@ -4,17 +4,26 @@
     <form action="">
         <table>
             <colgroup>
+				@if(request()->segment(2) != 'section' && request()->segment(2) != 'label' && request()->segment(2) != 'pouch' && request()->segment(2) != 'inquiry' && request()->segment(2) != 'notice' && request()->segment(2) != 'equipment' && request()->segment(2) != 'sale_label' && request()->segment(2) != 'sale_pouch')
                 <col width="100">
-				<col width="100">
-                <col width="450">
+				<col width="75">
+                <col width="400">
+				@else
+                <col width="120">
+				<col width="75">
+                <col width="430">
+				@endif
                 <col width="250">
+				@if(request()->segment(2) != 'section' && request()->segment(2) != 'label' && request()->segment(2) != 'pouch' && request()->segment(2) != 'inquiry' && request()->segment(2) != 'notice' && request()->segment(2) != 'equipment' && request()->segment(2) != 'sale_label' && request()->segment(2) != 'sale_pouch')
+                <col width="100">
+				@endif
                 <col width="100">
                 <col width="180">
             </colgroup>
             <thead>
                 <tr>
                     <th>번호</th>
-                    <th>@if(request()->segment(2) == 'media')링크@elseif(request()->segment(2) != 'notice') 이미지@endif</th>
+                    <th>@if(request()->segment(2) == 'media')링크@elseif(request()->segment(2) != 'notice' && request()->segment(2) != 'inquiry') 이미지@endif</th>
                     <th>제목</th>
 					@if(request()->segment(1) == 'ey_pcpopup')
                     <th>팝업크기/여백</th>
@@ -22,7 +31,7 @@
                     <!-- <th>기간</th> -->
 					@endif
                     <th>등록일</th>
-					@if(request()->segment(2) != 'section')
+					@if(request()->segment(2) != 'section' && request()->segment(2) != 'label' && request()->segment(2) != 'pouch' && request()->segment(2) != 'inquiry' && request()->segment(2) != 'notice' && request()->segment(2) != 'equipment' && request()->segment(2) != 'sale_label' && request()->segment(2) != 'sale_pouch')
 					<th>우선순위</th>
 					@endif
                     <th>사용여부</th>
@@ -38,11 +47,16 @@
 					@foreach($data as $data)
 						<tr>
 							<td>{{ $number-- }}</td>
-							<td>@if(request()->segment(2) == 'media')<a href="{{ $data->link_value }}" target="_blank">{{ $data->link_value }}</a>@else<a href="#none"><img src="/storage/app/images/{{ $data->attach_file }}" alt="" width="75px" height="75px"></a>@endif</td>
+							<td>@if(request()->segment(2) == 'media')<a href="{{ $data->link_value }}" target="_blank">{{ $data->link_value }}</a>
+							@elseif(request()->segment(2) == 'notice' || request()->segment(2) == 'inquiry')
+							{{ $data->category }}
+							@else
+							<a href="#none"><img src="/storage/app/images/{{ $data->attach_file }}" alt="" width="75px" height="75px"></a>
+							@endif</td>
 							<!-- <td>{{ $data->start_period }} ~ {{ $data->end_period }}</td> -->
 							<td>{{ $data->subject }}</td>
 							<td>{{ $data->reg_date }}</td>
-							@if(request()->segment(2) != 'section')
+							@if(request()->segment(2) != 'section' && request()->segment(2) != 'label' && request()->segment(2) != 'pouch' && request()->segment(2) != 'inquiry' && request()->segment(2) != 'notice' && request()->segment(2) != 'equipment' && request()->segment(2) != 'sale_label' && request()->segment(2) != 'sale_pouch')
 							<td>
 								<span class="list_arrow first" style="cursor: pointer;" onclick="javascript:location.href='/ey_admin/priority_change?status=2down&board_idx={{ $data->idx }}&board_type={{ request()->segment(2) }}';"><i style="color: #555" class="fas fa-arrow-up"></i></span>
 								<span class="list_arrow second" style="cursor: pointer;" onclick="javascript:location.href='/ey_admin/priority_change?status=down&board_idx={{ $data->idx }}&board_type={{ request()->segment(2) }}';"><i style="color: #ddd" class="fas fa-arrow-up"></i></span>

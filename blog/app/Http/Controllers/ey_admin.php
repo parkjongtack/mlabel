@@ -329,7 +329,7 @@ class Ey_admin extends Controller
 		}
 
 
-		if(request()->segment(2) == "section" || request()->segment(2) == "notice") {
+		if(request()->segment(2) == "label" || request()->segment(2) == "section" || request()->segment(2) == "pouch" || request()->segment(2) == "inquiry" || request()->segment(2) == "notice" || request()->segment(2) == "equipment" || request()->segment(2) == "sale_label" || request()->segment(2) == "sale_pouch") {
 
 			if($request->write_type == "modify") {
 				
@@ -347,6 +347,7 @@ class Ey_admin extends Controller
 							'subject' => $request->subject,
 							'contents' => $request->contents,
 							'category' => $request->category,
+							'category2' => $request->category2,
 							'writer' => $request->writer,
 							'ip_addr' => request()->ip(),
 							'board_type' => $request->board_type,
@@ -371,6 +372,7 @@ class Ey_admin extends Controller
 							'subject' => $request->subject,
 							'contents' => $request->contents,
 							'category' => $request->category,
+							'category2' => $request->category2,
 							'writer' => $request->writer,
 							'ip_addr' => request()->ip(),
 							'board_type' => $request->board_type,
@@ -407,6 +409,7 @@ class Ey_admin extends Controller
 						'subject' => $request->subject,
 						'contents' => $request->contents,
 						'category' => $request->category,
+						'category2' => $request->category2,
 						'writer' => $request->writer,
 						'ip_addr' => request()->ip(),
 						'board_type' => $request->board_type,

@@ -48,6 +48,18 @@
 							</select>
 						@elseif(request()->segment(2) == 'section')
 							<input type="text" name="category" value="SECTION" readonly style="border:none;" />
+						@elseif(request()->segment(2) == 'label')
+							<input type="text" name="category" value="LABEL" readonly style="border:none;" />
+						@elseif(request()->segment(2) == 'pouch')
+							<input type="text" name="category" value="POUCH" readonly style="border:none;" />
+						@elseif(request()->segment(2) == 'inquiry')
+							<input type="text" name="category" value="INQUIRY" readonly style="border:none;" />
+						@elseif(request()->segment(2) == 'equipment')
+							<input type="text" name="category" value="EQUIPMENT" readonly style="border:none;" />
+						@elseif(request()->segment(2) == 'sale_label')
+							<input type="text" name="category" value="SALE_LABEL" readonly style="border:none;" />
+						@elseif(request()->segment(2) == 'sale_pouch')
+							<input type="text" name="category" value="SALE_POUCH" readonly style="border:none;" />
 						@elseif(request()->segment(2) == 'notice')
 							<input type="text" name="category" value="NOTICE" readonly style="border:none;" />
 						@elseif(request()->segment(2) == 'popup')
@@ -56,6 +68,62 @@
                     </div>
                 </div>
 			</div>
+			@if(request()->segment(2) == 'equipment')
+			<div class="write_line">
+				<div class="all_line">
+					<div class="line_title">
+						카테고리2
+					</div>
+					<div class="line_content">
+						<select name="category2" id="category2">
+							<option value="1" >라벨인쇄설비</option>
+							<option value="2" >라벨제판설비</option>
+							<option value="3" >라벨부착설비</option>
+							<option value="4" >파우치인쇄설비</option>
+							<option value="5" >파우치제반설비</option>
+						</select>
+					</div>
+				</div>
+			</div>
+			@elseif(request()->segment(2) == 'sale_label')
+			<div class="write_line">
+				<div class="all_line">
+					<div class="line_title">
+						카테고리2
+					</div>
+					<div class="line_content">
+						<select name="category2" id="category2">
+							<option value="1" >화장품</option>
+							<option value="2" >제약</option>
+							<option value="3" >생활용품</option>
+							<option value="4" >주방용품</option>
+							<option value="5" >식품</option>
+							<option value="6" >의류</option>
+							<option value="7" >화학</option>
+						</select>
+					</div>
+				</div>
+			</div>
+			@elseif(request()->segment(2) == 'sale_pouch')
+			<div class="write_line">
+				<div class="all_line">
+					<div class="line_title">
+						카테고리2
+					</div>
+					<div class="line_content">
+						<select name="category2" id="category2">
+							<option value="1" >스파우트</option>
+							<option value="2" >지퍼스탠드</option>
+							<option value="3" >지퍼백</option>
+							<option value="4" >스택드업</option>
+							<option value="5" >삼방</option>
+							<option value="6" >스틱롤</option>
+							<option value="7" >M방</option>
+						</select>
+					</div>
+				</div>
+			</div>
+			@endif
 			@if(request()->segment(2) == 'beds')
             <div class="write_line">
                 <div class="all_line">
@@ -108,7 +176,7 @@
 							<!-- <div  name="editor" >
 								
 							</div> -->
-							<textarea id="editor" name="contents" cols="60" rows="10" style=""></textarea>
+							<textarea id="editor" name="contents" cols="60" rows="10"></textarea>
 							  <script type="text/javascript">
 									//CKEDITOR.replace('editor',{
 									//	filebrowserImageUploadUrl:"/image_upload_action?type=Images"
@@ -119,12 +187,12 @@
                 </div>
             </div>
 			@endif
-			@if(request()->segment(2) != 'popup' && request()->segment(2) != 'notice' && request()->segment(2) != 'section')
+			@if(request()->segment(2) != 'popup' && request()->segment(2) != 'notice' && request()->segment(2) != 'label' && request()->segment(2) != 'pouch' && request()->segment(2) != 'inquiry' && request()->segment(2) != 'sale_label' && request()->segment(2) != 'sale_pouch')
             <div class="write_line">
                 <div class="all_line">
                     <div class="line_title" style="vertical-align:middle;">링크</div>
 						<div class="line_content">
-							<input type="text" name="link_value" />@if(request()->segment(2) != 'pcslider')(광고가 끝나후에 나오는 본 동영상에서 <span style="color:red;">마우스 우클릭</span>를하여 나오는 <span style="color:red;">동영상 URL 복사</span>를 클릭 후 주소를 넣으세요)@endif
+							<input type="text" name="link_value" />@if(request()->segment(2) != 'pcslider' && request()->segment(2) != 'section' && request()->segment(2) != 'label' && request()->segment(2) != 'pouch' && request()->segment(2) != 'inquiry' && request()->segment(2) != 'sale_label' && request()->segment(2) != 'sale_pouch')(광고가 끝나후에 나오는 본 동영상에서 <span style="color:red;">마우스 우클릭</span>를하여 나오는 <span style="color:red;">동영상 URL 복사</span>를 클릭 후 주소를 넣으세요)@endif
                         </div>
                 </div>
             </div>
@@ -137,7 +205,7 @@
                         </div>
                 </div>
             </div> --}}
-			@if(request()->segment(2) != 'pcslider' && request()->segment(2) != 'section')
+			@if(request()->segment(2) != 'pcslider' && request()->segment(2) != 'section' && request()->segment(2) != 'label' && request()->segment(2) == 'pouch' && request()->segment(2) != 'inquiry' && request()->segment(2) != 'equipment' && request()->segment(2) != 'sale_label' && request()->segment(2) != 'sale_pouch')
             <div class="write_line cate_file">
                 <div class="all_line">
                     <div class="line_title">
@@ -174,7 +242,6 @@
                 </div>
             </div>
 			@endif
-			@if(request()->segment(2) != 'notice')
             <span id="append_target">
                 <div class="write_line cate_file">
                     <div class="all_line">
@@ -182,7 +249,7 @@
                             파일선택@if(request()->segment(2) == 'beds' || request()->segment(2) == 'acc' || request()->segment(2) == 'pcslider')(PC)@endif
                         </div>
                         <div class="line_content">
-							@if(request()->segment(2) != 'pcslider' && request()->segment(2) != 'section' && request()->segment(2) != 'popup')
+							@if(request()->segment(2) != 'pcslider' && request()->segment(2) != 'section' && request()->segment(2) != 'popup' && request()->segment(2) != 'label' && request()->segment(2) != 'inquiry' && request()->segment(2) != 'notice' && request()->segment(2) != 'equipment' && request()->segment(2) != 'sale_label' && request()->segment(2) != 'sale_pouch')
                             <input type="file" name="writer_file[]" />
 							<span style="cursor: pointer" class="add_file2">파일추가 +</span>
 							@else
@@ -200,7 +267,6 @@
                     </div>
                 </div>
             </span>
-			@endif
 			@if(request()->segment(2) == 'press')
             <span id="append_target">
                 <div class="write_line cate_file">
@@ -256,7 +322,7 @@
 			@endif
 			
 			<span id="append_target_sub">
-			@if(request()->segment(2) != 'pcslider' && request()->segment(2) != 'section' && request()->segment(2) != 'popup'  && request()->segment(2) != 'notice')
+			@if(request()->segment(2) != 'pcslider' && request()->segment(2) != 'section' && request()->segment(2) != 'label' && request()->segment(2) != 'pouch' && request()->segment(2) != 'inquiry' && request()->segment(2) != 'popup'  && request()->segment(2) != 'notice' && request()->segment(2) != 'equipment' && request()->segment(2) != 'sale_label' && request()->segment(2) != 'sale_pouch')
                 <div class="write_line cate_file slider_area">
                     <div class="all_line">
                         <div class="line_title">
@@ -740,7 +806,7 @@
 				form.subject.focus();
 				return false;
 			}
-
+			
 			let editor = new FroalaEditor('#edit', {}, function () {
 				// console.log(editor.html.get())				
 			});		

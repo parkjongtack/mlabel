@@ -51,8 +51,20 @@
 								<option value="personal" @if($data->category2 == 'personal') selected @endif >Personal Accessories</option>
 								<option value="collection" @if($data->category2 == 'collection') selected @endif >children's collection</option>
 							</select>
-						@elseif(request()->segment(2) == 'media')
-							<input type="text" name="category" value="MEDIA" readonly style="border:none;" />
+						@elseif(request()->segment(2) == 'section')
+							<input type="text" name="category" value="SECTION" readonly style="border:none;" />
+						@elseif(request()->segment(2) == 'label')
+							<input type="text" name="category" value="LABEL" readonly style="border:none;" />
+						@elseif(request()->segment(2) == 'pouch')
+							<input type="text" name="category" value="POUCH" readonly style="border:none;" />
+						@elseif(request()->segment(2) == 'inquiry')
+							<input type="text" name="category" value="INQUIRY" readonly style="border:none;" />
+						@elseif(request()->segment(2) == 'equipment')
+							<input type="text" name="category" value="EQUIPMENT" readonly style="border:none;" />
+						@elseif(request()->segment(2) == 'sale_label')
+							<input type="text" name="category" value="SALE_LABEL" readonly style="border:none;" />
+						@elseif(request()->segment(2) == 'sale_pouch')
+							<input type="text" name="category" value="SALE_POUCH" readonly style="border:none;" />
 						@elseif(request()->segment(2) == 'notice')
 							<input type="text" name="category" value="NOTICE" readonly style="border:none;" />
 						@elseif(request()->segment(2) == 'popup')
@@ -61,6 +73,62 @@
                     </div>
                 </div>
 			</div>
+			@if(request()->segment(2) == 'equipment')
+			<div class="write_line">
+				<div class="all_line">
+					<div class="line_title">
+						카테고리2
+					</div>
+					<div class="line_content">
+						<select name="category2" id="category2">
+							<option value="1" @if($data->category2 == '1') selected @endif >라벨인쇄설비</option>
+							<option value="2" @if($data->category2 == '2') selected @endif >라벨제판설비</option>
+							<option value="3" @if($data->category2 == '3') selected @endif >라벨부착설비</option>
+							<option value="4" @if($data->category2 == '4') selected @endif >파우치인쇄설비</option>
+							<option value="5" @if($data->category2 == '5') selected @endif >파우치제반설비</option>
+						</select>
+					</div>
+				</div>
+			</div>
+			@elseif(request()->segment(2) == 'sale_label')
+			<div class="write_line">
+				<div class="all_line">
+					<div class="line_title">
+						카테고리2
+					</div>
+					<div class="line_content">
+						<select name="category2" id="category2">
+							<option value="1" @if($data->category2 == '1') selected @endif >화장품</option>
+							<option value="2" @if($data->category2 == '2') selected @endif >제약</option>
+							<option value="3" @if($data->category2 == '3') selected @endif >생활용품</option>
+							<option value="4" @if($data->category2 == '4') selected @endif >주방용품</option>
+							<option value="5" @if($data->category2 == '5') selected @endif >식품</option>
+							<option value="6" @if($data->category2 == '6') selected @endif >의류</option>
+							<option value="7" @if($data->category2 == '7') selected @endif >화학</option>
+						</select>
+					</div>
+				</div>
+			</div>
+			@elseif(request()->segment(2) == 'sale_pouch')
+			<div class="write_line">
+				<div class="all_line">
+					<div class="line_title">
+						카테고리2
+					</div>
+					<div class="line_content">
+						<select name="category2" id="category2">
+							<option value="1" @if($data->category2 == '1') selected @endif >스파우트</option>
+							<option value="2" @if($data->category2 == '2') selected @endif >지퍼스탠드</option>
+							<option value="3" @if($data->category2 == '3') selected @endif >지퍼백</option>
+							<option value="4" @if($data->category2 == '4') selected @endif >스택드업</option>
+							<option value="5" @if($data->category2 == '5') selected @endif >삼방</option>
+							<option value="6" @if($data->category2 == '6') selected @endif >스틱롤</option>
+							<option value="7" @if($data->category2 == '7') selected @endif >M방</option>
+						</select>
+					</div>
+				</div>
+			</div>
+			@endif
 			@if(request()->segment(2) == 'beds')
             <div class="write_line">
                 <div class="all_line">
@@ -111,15 +179,15 @@
                 <div class="all_line">
 						<div class="line_title" style="vertical-align:top;">내용</div>
 						<div class="line_content">
-							<div id="editor">
+							<!-- <div id="editor">
 								<div id="edit" style="width:900px;">{!! $data->contents !!}</div>
-							</div>
-							<textarea name="contents" cols="60" rows="10" style="display:none;"></textarea>
+							</div> -->
+							<textarea id="editor" name="contents" cols="60" rows="10" style="">{!! $data->contents !!}</textarea>
 						</div>
                 </div>
             </div>
 			@endif
-			@if(request()->segment(2) != 'beds' && request()->segment(2) != 'acc' && request()->segment(2) != 'popup' && request()->segment(2) != 'press' && request()->segment(2) != 'notice')
+			@if(request()->segment(2) != 'beds' && request()->segment(2) != 'acc' && request()->segment(2) != 'popup' && request()->segment(2) != 'press' && request()->segment(2) != 'notice' && request()->segment(2) != 'label' && request()->segment(2) != 'pouch' && request()->segment(2) != 'inquiry' && request()->segment(2) != 'sale_label' && request()->segment(2) != 'sale_pouch')
             <div class="write_line">
                 <div class="all_line">
                     <div class="line_title" style="vertical-align:middle;">링크</div>
@@ -137,7 +205,7 @@
                         </div>
                 </div>
             </div> --}}
-			@if(request()->segment(2) != 'pcslider' && request()->segment(2) != 'press' && request()->segment(2) != 'beds' && request()->segment(2) != 'acc' && request()->segment(2) != 'media' && request()->segment(2) != 'notice')
+			@if(request()->segment(2) != 'pcslider' && request()->segment(2) != 'section' && request()->segment(2) != 'label' && request()->segment(2) != 'pouch' && request()->segment(2) != 'inquiry' && request()->segment(2) != 'notice' && request()->segment(2) != 'equipment' && request()->segment(2) != 'sale_label' && request()->segment(2) != 'sale_pouch')
             <div class="write_line cate_file">
                 <div class="all_line">
                     <div class="line_title">
@@ -174,12 +242,12 @@
                 </div>
             </div>
 			@endif
-			@if(request()->segment(2) != 'press' && request()->segment(2) != 'media' && request()->segment(2) != 'notice')
+			@if(request()->segment(2) != 'press' && request()->segment(2) != 'media')
             <span id="append_target">
                 <div class="write_line cate_file">
                     <div class="all_line">
                         <div class="line_title">
-                            파일선택@if(request()->segment(2) == 'beds' || request()->segment(2) == 'acc' || request()->segment(2) == 'pcslider')(PC)@endif
+                            파일선택@if(request()->segment(2) == 'pcslider')(PC)@endif
                         </div>
                         <div class="line_content">
 							<input type="file" name="writer_file" />
@@ -192,7 +260,7 @@
 							@if(request()->segment(2) == 'acc')
 							<label for="all_type"><input type="checkbox" id="all_type" name="all_type" value="Y" @if($data->all_type == 'Y') checked @endif />가로전체 채우기</label>
 							@endif
-							@if(request()->segment(2) != 'pcslider' && request()->segment(2) != 'press' && request()->segment(2) != 'beds' && request()->segment(2) != 'acc' && request()->segment(2) != 'popup')
+							@if(request()->segment(2) != 'pcslider' && request()->segment(2) != 'section' && request()->segment(2) != 'label' && request()->segment(2) != 'inquiry' && request()->segment(2) != 'equipment' && request()->segment(2) != 'pouch' && request()->segment(2) != 'sale_label' && request()->segment(2) != 'sale_pouch')
                             <span style="cursor: pointer" class="add_file">파일추가 +</span>
 							@endif
                         </div>
@@ -250,7 +318,7 @@
             </span>
 			@endif
 			<span id="append_target_sub">
-			@if(request()->segment(2) != 'pcslider' && request()->segment(2) != 'press' && request()->segment(2) != 'acc' && request()->segment(2) != 'media' && request()->segment(2) != 'popup'  && request()->segment(2) != 'notice')
+			@if(request()->segment(2) != 'pcslider' && request()->segment(2) != 'section' && request()->segment(2) != 'label' && request()->segment(2) != 'pouch' && request()->segment(2) != 'inquiry' && request()->segment(2) != 'popup' && request()->segment(2) != 'notice' && request()->segment(2) != 'equipment' && request()->segment(2) != 'sale_label' && request()->segment(2) != 'sale_pouch')
                 <div class="write_line cate_file slider_area">
                     <div class="all_line">
                         <div class="line_title">
@@ -342,6 +410,39 @@
         </div>
     </form>
 </div>
+<style>
+.ck.ck-editor {
+    min-width: 1000px;
+}
+
+.ck-editor__editable {
+    min-height: 300px;
+}
+ 
+</style>
+<script src="https://ckeditor.com/apps/ckfinder/3.5.0/ckfinder.js"></script>
+
+<script src="/js/ckeditor.js"></script>
+
+<script>
+	let editor2;
+	//filebrowserImageUploadUrl:"/image_upload_action?type=Images"
+
+	ClassicEditor
+		.create( document.querySelector( '#editor' ), {
+			// toolbar: [ 'heading', '|', 'bold', 'italic', 'link' ]
+			ckfinder: {
+				uploadUrl: '/image_upload_action?type=Files&CKEditorFuncNum=2'
+			}
+		} )
+		.then( newEditor => {
+			editor2 = newEditor;
+			//editor = editor;
+		} )
+		.catch( err => {
+			console.error( err.stack );
+		} );
+</script>
 <script type="text/javascript"
     src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.3.0/codemirror.min.js"></script>
   <script type="text/javascript"
@@ -408,6 +509,8 @@
 	}
 
 	function submit_check() {
+
+		const editorData = editor2.getData();
 
 		var form = document.board_write_form;
 
@@ -502,13 +605,14 @@
 				return false;
 			}
 			*/
-		@elseif(request()->segment(2) == 'press' || request()->segment(2) == 'notice')
+		@elseif(request()->segment(2) == 'label' || request()->segment(2) == 'section' || request()->segment(2) == 'notice')
 
-			if(form.subject3.value == "") {
+			if(form.subject.value == "") {
 				alert('제목을 입력해주세요.');
 				form.subject.focus();
 				return false;
 			}
+
 			/*
 			if(form.priority.value == "") {
 				alert('우선순위을 입력해주세요.');
@@ -517,21 +621,36 @@
 			}
 			*/
 
-			let editor = new FroalaEditor('#edit', {}, function () {
+			//let editor = new FroalaEditor('#edit', {}, function () {
 				// console.log(editor.html.get())				
-			});		
-			
-			if(editor.core.isEmpty() == true) {
+			//});		
+
+			//if(editor.core.isEmpty() == true) {
+			//	alert("게시글을 작성해주세요.");
+			//	editor.events.focus(true);
+			//	return false;
+			//}
+
+			if(editorData == "") {
 				alert("게시글을 작성해주세요.");
-				editor.events.focus(true);
+				//editor.events.focus(true);
+				editor2.editing.view.focus();
 				return false;
 			}
 
-			$("textarea[name=contents]").val(editor.html.get());
+
+			@if(!$data->attach_file)
+				if(form.writer_file.value == "") {
+					alert('이미지를 선택해주세요.');
+					form.writer_file.focus();
+					return false;
+				}
+			@endif
 
 		@endif
 
 	}
+	/*
 	(function () {
       //new FroalaEditor("#edit")
 
@@ -669,6 +788,7 @@
 
 		});
     })()
+	*/
     $(function(){
 		// @if(request()->segment(2) != 'press')
 		//  $("#start_period, #end_period").datepicker({
