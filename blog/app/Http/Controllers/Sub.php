@@ -94,7 +94,17 @@ class Sub extends Controller
 		   $device = 'browser';
 		}
 
-		return view($device == "browser" ? '/sub/equipment' : '/m/sub/equipment' , $request);
+		$board_equipment_array = DB::table('board') 
+								->select(DB::raw('*, substr(reg_date, 1, 10) as reg_date_cut'))
+								->where('board_type', 'equipment')
+								->where('use_status', 'Y')
+								->where('category2', $_GET['category2'])
+								->orderBy('idx','desc')
+								->get();
+
+		$return_list['board_equipment'] = $board_equipment_array;		
+
+		return view($device == "browser" ? '/sub/equipment' : '/m/sub/equipment' , $return_list);
 
 	}
 
@@ -117,7 +127,54 @@ class Sub extends Controller
 		   $device = 'browser';
 		}
 
-		return view($device == "browser" ? '/sub/product' : '/m/sub/product' , $request);
+		if($_GET['category2'] == "all") {
+
+			$board_sale_label_array = DB::table('board') 
+									->select(DB::raw('*, substr(reg_date, 1, 10) as reg_date_cut'))
+									->where('board_type', 'sale_label')
+									->where('use_status', 'Y')
+									->orderBy('idx','desc')
+									->get();
+
+			$return_list['board_sale_label'] = $board_sale_label_array;		
+
+			$board_sale_pouch_array = DB::table('board') 
+									->select(DB::raw('*, substr(reg_date, 1, 10) as reg_date_cut'))
+									->where('board_type', 'sale_pouch')
+									->where('use_status', 'Y')
+									->orderBy('idx','desc')
+									->get();
+
+			$return_list['board_sale_pouch'] = $board_sale_pouch_array;		
+
+
+		} else {
+
+			$board_sale_label_array = DB::table('board') 
+									->select(DB::raw('*, substr(reg_date, 1, 10) as reg_date_cut'))
+									->where('board_type', 'sale_label')
+									->where('use_status', 'Y')
+									->where('category2', $_GET['category2'])
+									->orderBy('idx','desc')
+									->get();
+
+			$return_list['board_sale_label'] = $board_sale_label_array;		
+
+			$board_sale_pouch_array = DB::table('board') 
+									->select(DB::raw('*, substr(reg_date, 1, 10) as reg_date_cut'))
+									->where('board_type', 'sale_pouch')
+									->where('use_status', 'Y')
+									->where('category2', $_GET['category2'])
+									->orderBy('idx','desc')
+									->get();
+
+			$return_list['board_sale_pouch'] = $board_sale_pouch_array;		
+
+
+		}
+
+
+		return view($device == "browser" ? '/sub/product' : '/m/sub/product' , $return_list);
 
 	}
 

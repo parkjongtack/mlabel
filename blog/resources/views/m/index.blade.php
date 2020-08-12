@@ -95,6 +95,20 @@
 <div class="sale_con">
     <ul class="inner">
         <li>
+		@foreach($board_sale_label as $board_sale_label)
+        <li>
+            <a href="#none">
+                <div class="sale_img_box">
+                    <img src="/storage/app/images/{{ $board_sale_label->attach_file }}" alt="">
+                </div>
+                <div class="sale_text_box">
+                    <h4>{{ $board_sale_label->subject }}</h4>
+                    <p>{!! $board_sale_label->contents !!}</p>
+                </div>
+            </a>
+        </li>
+		@endforeach
+        <!-- <li>
             <a href="#none">
                 <div class="sale_img_box">
                     <img src="/img/sale_img.png" alt="">
@@ -115,21 +129,10 @@
                     <p>텍스트</p>
                 </div>
             </a>
-        </li>
-        <li>
-            <a href="#none">
-                <div class="sale_img_box">
-                    <img src="/img/sale_img.png" alt="">
-                </div>
-                <div class="sale_text_box">
-                    <h4>제품</h4>
-                    <p>텍스트</p>
-                </div>
-            </a>
-        </li>
+        </li> -->
     </ul>
     <div class="sale_more_btn">
-        <a href="#none">더보기</a>
+        <a href="/sub/product/label">더보기</a>
     </div>
 </div>
 <div class="see_more_con">
@@ -139,7 +142,20 @@
 </div>
 <div class="sale_con">
     <ul class="inner">
+		@foreach($board_sale_pouch as $board_sale_pouch)
         <li>
+            <a href="#none">
+                <div class="sale_img_box">
+                    <img src="/storage/app/images/{{ $board_sale_pouch->attach_file }}" alt="">
+                </div>
+                <div class="sale_text_box">
+                    <h4>{{ $board_sale_pouch->subject }}</h4>
+                    <p>{!! $board_sale_pouch->contents !!}</p>
+                </div>
+            </a>
+        </li>
+		@endforeach
+        <!-- <li>
             <a href="#none">
                 <div class="sale_img_box">
                     <img src="/img/sale_img.png" alt="">
@@ -160,21 +176,10 @@
                     <p>텍스트</p>
                 </div>
             </a>
-        </li>
-        <li>
-            <a href="#none">
-                <div class="sale_img_box">
-                    <img src="/img/sale_img.png" alt="">
-                </div>
-                <div class="sale_text_box">
-                    <h4>제품</h4>
-                    <p>텍스트</p>
-                </div>
-            </a>
-        </li>
+        </li> -->
     </ul>
     <div class="sale_more_btn">
-        <a href="#none">더보기</a>
+        <a href="/sub/product/pouch">더보기</a>
     </div>
 </div>
 <div class="insta_area">

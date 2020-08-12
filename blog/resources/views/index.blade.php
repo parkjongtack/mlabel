@@ -239,7 +239,7 @@
         </li> -->
     </ul>
     <div class="sale_more_btn">
-        <a href="#none">더보기</a>
+        <a href="/sub/product/label">더보기</a>
     </div>
 </div>
 <div class="see_more_con num2">
@@ -358,7 +358,7 @@
         </li> -->
     </ul>
     <div class="sale_more_btn">
-        <a href="#none">더보기</a>
+        <a href="/sub/product/pouch">더보기</a>
     </div>
 </div>
 @include('inc/footer')

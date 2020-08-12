@@ -9,15 +9,32 @@
     <div class="inner">
         <div class="sub_nav">
             <ul>
-                <li class="on">라벨인쇄설비</li>
-                <li>라벨제판설비</li>
-                <li>라벨부착설비</li>
-                <li>파우치인쇄설비</li>
-                <li>파우치제판설비</li>
+                <li @if($_GET['category2'] == '1') class="on" @endif onclick="javascript:location.href='/sub/equipment?category2=1';">라벨인쇄설비</li>
+                <li @if($_GET['category2'] == '2') class="on" @endif onclick="javascript:location.href='/sub/equipment?category2=2';">라벨제판설비</li>
+                <li @if($_GET['category2'] == '3') class="on" @endif onclick="javascript:location.href='/sub/equipment?category2=3';">라벨부착설비</li>
+                <li @if($_GET['category2'] == '4') class="on" @endif onclick="javascript:location.href='/sub/equipment?category2=4';">파우치인쇄설비</li>
+                <li @if($_GET['category2'] == '5') class="on" @endif onclick="javascript:location.href='/sub/equipment?category2=5';">파우치제판설비</li>
             </ul>
         </div>
         <div class="equipment sub_layout on">
-            <div class="equipment_list">
+            @foreach($board_equipment as $board_equipment)
+			<div class="equipment_list">
+                <div class="img_area">
+                    <img src="/storage/app/images/{{ $board_equipment->attach_file }}" alt="">
+                </div>
+                <div class="text_area">
+                    <h2>{{ $board_equipment->subject }}</h2>
+                    <!-- <p class="sub_title">국내 단 1대! 8도 인쇄 가능! 최상의 출력물!</p> -->
+                    <div class="line"></div>
+                    <!-- <p>동판이 필요없는 파우치 인쇄 장비입니다.</p>
+                    <p>소량 다품종에 최적화 되었으며 최고의 퀄리티를 자랑합니다.</p> -->
+					{!! $board_equipment->contents !!}
+                    <a href="#none">영상보기</a>
+                </div>
+            </div>
+			@endforeach
+        </div>
+            <!-- <div class="equipment_list">
                 <div class="img_area">
                     <img src="/img/sample_img1.png" alt="">
                 </div>
@@ -28,92 +45,10 @@
                     <p>동판이 필요없는 파우치 인쇄 장비입니다.</p>
                     <p>소량 다품종에 최적화 되었으며 최고의 퀄리티를 자랑합니다.</p>
                     <a href="#none">영상보기</a>
-                </div>
+                </div> -->
             </div>
         </div>
-        <div class="equipment sub_layout">
-            <div class="equipment_list">
-                <div class="img_area">
-                    <img src="/img/sample_img1.png" alt="">
-                </div>
-                <div class="text_area">
-                    <h2>WJPS-660 OPPSET (옵셋)</h2>
-                    <p class="sub_title">국내 단 1대! 8도 인쇄 가능! 최상의 출력물!</p>
-                    <div class="line"></div>
-                    <p>동판이 필요없는 파우치 인쇄 장비입니다.</p>
-                    <p>소량 다품종에 최적화 되었으며 최고의 퀄리티를 자랑합니다.</p>
-                    <a href="#none">영상보기</a>
-                </div>
-            </div>
-            <div class="equipment_list">
-                <div class="img_area">
-                    <img src="/img/sample_img1.png" alt="">
-                </div>
-                <div class="text_area">
-                    <h2>WJPS-660 OPPSET (옵셋)</h2>
-                    <p class="sub_title">국내 단 1대! 8도 인쇄 가능! 최상의 출력물!</p>
-                    <div class="line"></div>
-                    <p>동판이 필요없는 파우치 인쇄 장비입니다.</p>
-                    <p>소량 다품종에 최적화 되었으며 최고의 퀄리티를 자랑합니다.</p>
-                    <a href="#none">영상보기</a>
-                </div>
-            </div>
-        </div>
-        <div class="equipment sub_layout">
-            <div class="equipment_list">
-                <div class="img_area">
-                    <img src="/img/sample_img1.png" alt="">
-                </div>
-                <div class="text_area">
-                    <h2>WJPS-660 OPPSET (옵셋)</h2>
-                    <p class="sub_title">국내 단 1대! 8도 인쇄 가능! 최상의 출력물!</p>
-                    <div class="line"></div>
-                    <p>동판이 필요없는 파우치 인쇄 장비입니다.</p>
-                    <p>소량 다품종에 최적화 되었으며 최고의 퀄리티를 자랑합니다.</p>
-                    <a href="#none">영상보기</a>
-                </div>
-            </div>
-            <div class="equipment_list">
-                <div class="img_area">
-                    <img src="/img/sample_img1.png" alt="">
-                </div>
-                <div class="text_area">
-                    <h2>WJPS-660 OPPSET (옵셋)</h2>
-                    <p class="sub_title">국내 단 1대! 8도 인쇄 가능! 최상의 출력물!</p>
-                    <div class="line"></div>
-                    <p>동판이 필요없는 파우치 인쇄 장비입니다.</p>
-                    <p>소량 다품종에 최적화 되었으며 최고의 퀄리티를 자랑합니다.</p>
-                    <a href="#none">영상보기</a>
-                </div>
-            </div>
-            <div class="equipment_list">
-                <div class="img_area">
-                    <img src="/img/sample_img1.png" alt="">
-                </div>
-                <div class="text_area">
-                    <h2>WJPS-660 OPPSET (옵셋)</h2>
-                    <p class="sub_title">국내 단 1대! 8도 인쇄 가능! 최상의 출력물!</p>
-                    <div class="line"></div>
-                    <p>동판이 필요없는 파우치 인쇄 장비입니다.</p>
-                    <p>소량 다품종에 최적화 되었으며 최고의 퀄리티를 자랑합니다.</p>
-                    <a href="#none">영상보기</a>
-                </div>
-            </div>
-        </div>
-        <div class="equipment sub_layout">
-            <div class="equipment_list">
-                <div class="img_area">
-                    <img src="/img/sample_img1.png" alt="">
-                </div>
-                <div class="text_area">
-                    <h2>WJPS-660 OPPSET (옵셋)</h2>
-                    <p class="sub_title">국내 단 1대! 8도 인쇄 가능! 최상의 출력물!</p>
-                    <div class="line"></div>
-                    <p>동판이 필요없는 파우치 인쇄 장비입니다.</p>
-                    <p>소량 다품종에 최적화 되었으며 최고의 퀄리티를 자랑합니다.</p>
-                    <a href="#none">영상보기</a>
-                </div>
-            </div>
+        <!-- <div class="equipment sub_layout">
             <div class="equipment_list">
                 <div class="img_area">
                     <img src="/img/sample_img1.png" alt="">
@@ -207,6 +142,8 @@
                     <a href="#none">영상보기</a>
                 </div>
             </div>
+        </div>
+        <div class="equipment sub_layout">
             <div class="equipment_list">
                 <div class="img_area">
                     <img src="/img/sample_img1.png" alt="">
@@ -220,7 +157,59 @@
                     <a href="#none">영상보기</a>
                 </div>
             </div>
-        </div>
+            <div class="equipment_list">
+                <div class="img_area">
+                    <img src="/img/sample_img1.png" alt="">
+                </div>
+                <div class="text_area">
+                    <h2>WJPS-660 OPPSET (옵셋)</h2>
+                    <p class="sub_title">국내 단 1대! 8도 인쇄 가능! 최상의 출력물!</p>
+                    <div class="line"></div>
+                    <p>동판이 필요없는 파우치 인쇄 장비입니다.</p>
+                    <p>소량 다품종에 최적화 되었으며 최고의 퀄리티를 자랑합니다.</p>
+                    <a href="#none">영상보기</a>
+                </div>
+            </div>
+            <div class="equipment_list">
+                <div class="img_area">
+                    <img src="/img/sample_img1.png" alt="">
+                </div>
+                <div class="text_area">
+                    <h2>WJPS-660 OPPSET (옵셋)</h2>
+                    <p class="sub_title">국내 단 1대! 8도 인쇄 가능! 최상의 출력물!</p>
+                    <div class="line"></div>
+                    <p>동판이 필요없는 파우치 인쇄 장비입니다.</p>
+                    <p>소량 다품종에 최적화 되었으며 최고의 퀄리티를 자랑합니다.</p>
+                    <a href="#none">영상보기</a>
+                </div>
+            </div>
+            <div class="equipment_list">
+                <div class="img_area">
+                    <img src="/img/sample_img1.png" alt="">
+                </div>
+                <div class="text_area">
+                    <h2>WJPS-660 OPPSET (옵셋)</h2>
+                    <p class="sub_title">국내 단 1대! 8도 인쇄 가능! 최상의 출력물!</p>
+                    <div class="line"></div>
+                    <p>동판이 필요없는 파우치 인쇄 장비입니다.</p>
+                    <p>소량 다품종에 최적화 되었으며 최고의 퀄리티를 자랑합니다.</p>
+                    <a href="#none">영상보기</a>
+                </div>
+            </div>
+            <div class="equipment_list">
+                <div class="img_area">
+                    <img src="/img/sample_img1.png" alt="">
+                </div>
+                <div class="text_area">
+                    <h2>WJPS-660 OPPSET (옵셋)</h2>
+                    <p class="sub_title">국내 단 1대! 8도 인쇄 가능! 최상의 출력물!</p>
+                    <div class="line"></div>
+                    <p>동판이 필요없는 파우치 인쇄 장비입니다.</p>
+                    <p>소량 다품종에 최적화 되었으며 최고의 퀄리티를 자랑합니다.</p>
+                    <a href="#none">영상보기</a>
+                </div>
+            </div>
+        </div> -->
     </div>
 </div>
 @include('/inc/footer')
