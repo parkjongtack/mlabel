@@ -5,10 +5,9 @@
         <table>
             <colgroup>
                 <col width="100">
-				<col width="75">
-                <col width="400">
+				<col width="100">
+                <col width="450">
                 <col width="250">
-                <col width="100">
                 <col width="100">
                 <col width="180">
             </colgroup>
@@ -23,7 +22,9 @@
                     <!-- <th>기간</th> -->
 					@endif
                     <th>등록일</th>
+					@if(request()->segment(2) != 'section')
 					<th>우선순위</th>
+					@endif
                     <th>사용여부</th>
                     <th>기능</th>
                 </tr>
@@ -41,12 +42,14 @@
 							<!-- <td>{{ $data->start_period }} ~ {{ $data->end_period }}</td> -->
 							<td>{{ $data->subject }}</td>
 							<td>{{ $data->reg_date }}</td>
+							@if(request()->segment(2) != 'section')
 							<td>
 								<span class="list_arrow first" style="cursor: pointer;" onclick="javascript:location.href='/ey_admin/priority_change?status=2down&board_idx={{ $data->idx }}&board_type={{ request()->segment(2) }}';"><i style="color: #555" class="fas fa-arrow-up"></i></span>
 								<span class="list_arrow second" style="cursor: pointer;" onclick="javascript:location.href='/ey_admin/priority_change?status=down&board_idx={{ $data->idx }}&board_type={{ request()->segment(2) }}';"><i style="color: #ddd" class="fas fa-arrow-up"></i></span>
 								<span class="list_arrow third" style="cursor: pointer;" onclick="javascript:location.href='/ey_admin/priority_change?status=up&board_idx={{ $data->idx }}&board_type={{ request()->segment(2) }}';"><i style="color: #ddd" class="fas fa-arrow-down"></i></span>
 								<span class="list_arrow four" style="cursor: pointer;" onclick="javascript:location.href='/ey_admin/priority_change?status=2up&board_idx={{ $data->idx }}&board_type={{ request()->segment(2) }}';"><i style="color: #555" class="fas fa-arrow-down"></i></span>
 							</td>
+							@endif
 							<td>
 								@if($data->use_status == 'Y')
 									사용

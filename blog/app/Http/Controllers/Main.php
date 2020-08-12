@@ -59,6 +59,16 @@ class Main extends Controller
 
 		$return_list['data'] = $board_list_pcslider_main;
 
+		$board_quality_section_array = DB::table('board') 
+								->select(DB::raw('*, substr(reg_date, 1, 10) as reg_date_cut'))
+								->where('board_type', 'section')
+								->where('use_status', 'Y')
+								->orderBy('idx','desc')
+								->limit(3)
+								->get();
+
+		$return_list['data2'] = $board_quality_section_array;
+
 		return view($device == "browser" ? 'index' : 'm/index' , $return_list);
 		// return view('index', $return_list);
 

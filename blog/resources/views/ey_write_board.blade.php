@@ -1,5 +1,5 @@
 @include('ey_header')
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css">
+<!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css">
 <link rel="stylesheet" href="/editor/css/froala_editor.css">
 <link rel="stylesheet" href="/editor/css/froala_style.css">
 <link rel="stylesheet" href="/editor/css/plugins/code_view.css">
@@ -18,9 +18,9 @@
 <link rel="stylesheet" href="/editor/css/plugins/help.css">
 <link rel="stylesheet" href="/editor/css/third_party/spell_checker.css">
 <link rel="stylesheet" href="/editor/css/plugins/special_characters.css">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.3.0/codemirror.min.css">
-<div class="con_main">
-    <form action="/ey_admin/{{ request()->segment(2) }}/write_board_action" name="board_write_form" method="post" enctype="multipart/form-data" onsubmit="return submit_check();" >
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.3.0/codemirror.min.css"> -->
+<div class="con_main"><!--  onsubmit="return submit_check();" -->
+    <form action="/ey_admin/{{ request()->segment(2) }}/write_board_action" name="board_write_form" method="post" enctype="multipart/form-data" onsubmit="return submit_check();">
 		{{ csrf_field() }}
 		<input type="hidden" name="board_type" value="{{ request()->segment(2) }}" />
 		<input type="hidden" name="write_type" value="{{ request()->segment(4) }}" />
@@ -33,10 +33,6 @@
                     <div class="line_content">
 						@if(request()->segment(2) == 'pcslider')
 							<input type="text" name="category" value="PC슬라이더" readonly style="border:none;" />
-						@elseif(request()->segment(2) == 'press')
-							<input type="text" name="category" value="PRESS" readonly style="border:none;" />
-						@elseif(request()->segment(2) == 'beds')
-							<input type="text" name="category" value="BEDS" readonly style="border:none;" />
 						@elseif(request()->segment(2) == 'acc')
 							<input type="text" name="category" value="ACC" readonly style="border:none;" />
 							<select name="category2" id="category2">
@@ -50,8 +46,8 @@
 								<option value="personal">Personal Accessories</option>
 								<option value="collection">children's collection</option>
 							</select>
-						@elseif(request()->segment(2) == 'media')
-							<input type="text" name="category" value="MEDIA" readonly style="border:none;" />
+						@elseif(request()->segment(2) == 'section')
+							<input type="text" name="category" value="SECTION" readonly style="border:none;" />
 						@elseif(request()->segment(2) == 'notice')
 							<input type="text" name="category" value="NOTICE" readonly style="border:none;" />
 						@elseif(request()->segment(2) == 'popup')
@@ -104,20 +100,26 @@
                     </div>
                 </div>
             </div> -->
-			@if(request()->segment(2) != 'pcslider' && request()->segment(2) != 'beds' && request()->segment(2) != 'acc' && request()->segment(2) != 'acc' && request()->segment(2) != 'media' && request()->segment(2) != 'popup')
+			@if(request()->segment(2) != 'pcslider' && request()->segment(2) != 'popup')
             <div class="write_line">
                 <div class="all_line">
 						<div class="line_title" style="vertical-align:top;">내용</div>
 						<div class="line_content">
-							<div id="editor">
-								<div id="edit" style="width:900px;"></div>
-							</div>
-							<textarea name="contents" cols="60" rows="10" style="display:none;"></textarea>
+							<!-- <div  name="editor" >
+								
+							</div> -->
+							<textarea id="editor" name="contents" cols="60" rows="10" style=""></textarea>
+							  <script type="text/javascript">
+									//CKEDITOR.replace('editor',{
+									//	filebrowserImageUploadUrl:"/image_upload_action?type=Images"
+									//});
+							  </script>
+
 						</div>
                 </div>
             </div>
 			@endif
-			@if(request()->segment(2) != 'beds' && request()->segment(2) != 'acc' && request()->segment(2) != 'popup' && request()->segment(2) != 'press' && request()->segment(2) != 'notice')
+			@if(request()->segment(2) != 'popup' && request()->segment(2) != 'notice' && request()->segment(2) != 'section')
             <div class="write_line">
                 <div class="all_line">
                     <div class="line_title" style="vertical-align:middle;">링크</div>
@@ -135,7 +137,7 @@
                         </div>
                 </div>
             </div> --}}
-			@if(request()->segment(2) != 'pcslider' && request()->segment(2) != 'press' && request()->segment(2) != 'beds' && request()->segment(2) != 'acc' && request()->segment(2) != 'media' && request()->segment(2) != 'notice')
+			@if(request()->segment(2) != 'pcslider' && request()->segment(2) != 'section')
             <div class="write_line cate_file">
                 <div class="all_line">
                     <div class="line_title">
@@ -172,7 +174,7 @@
                 </div>
             </div>
 			@endif
-			@if(request()->segment(2) != 'press' && request()->segment(2) != 'media' && request()->segment(2) != 'notice')
+			@if(request()->segment(2) != 'notice')
             <span id="append_target">
                 <div class="write_line cate_file">
                     <div class="all_line">
@@ -180,7 +182,7 @@
                             파일선택@if(request()->segment(2) == 'beds' || request()->segment(2) == 'acc' || request()->segment(2) == 'pcslider')(PC)@endif
                         </div>
                         <div class="line_content">
-							@if(request()->segment(2) != 'pcslider' && request()->segment(2) != 'press' && request()->segment(2) != 'beds' && request()->segment(2) != 'acc' && request()->segment(2) != 'popup')
+							@if(request()->segment(2) != 'pcslider' && request()->segment(2) != 'section' && request()->segment(2) != 'popup')
                             <input type="file" name="writer_file[]" />
 							<span style="cursor: pointer" class="add_file2">파일추가 +</span>
 							@else
@@ -254,7 +256,7 @@
 			@endif
 			
 			<span id="append_target_sub">
-			@if(request()->segment(2) != 'pcslider' && request()->segment(2) != 'press' && request()->segment(2) != 'acc' && request()->segment(2) != 'media' && request()->segment(2) != 'popup'  && request()->segment(2) != 'notice')
+			@if(request()->segment(2) != 'pcslider' && request()->segment(2) != 'section' && request()->segment(2) != 'popup'  && request()->segment(2) != 'notice')
                 <div class="write_line cate_file slider_area">
                     <div class="all_line">
                         <div class="line_title">
@@ -316,12 +318,12 @@
                 </div>
             </div>
             <div class="submit_box" style="text-align:center;margin-top:10px;">
-                <input type="submit" value="등록">
+                <input type="submit" value="등록" >
                 <input type="reset" value="취소">
             </div>
         </div>
     </form>
-</div>
+</div><!-- 
 <script type="text/javascript"
     src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.3.0/codemirror.min.js"></script>
   <script type="text/javascript"
@@ -358,10 +360,43 @@
   <script type="text/javascript" src="/editor/js/plugins/print.min.js"></script>
   <script type="text/javascript" src="/editor/js/third_party/spell_checker.min.js"></script>
   <script type="text/javascript" src="/editor/js/plugins/special_characters.min.js"></script>
-  <script type="text/javascript" src="/editor/js/plugins/word_paste.min.js"></script>
+  <script type="text/javascript" src="/editor/js/plugins/word_paste.min.js"></script> -->
   <!-- <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script> -->
-<script type="text/javascript">
+<style>
+.ck.ck-editor {
+    min-width: 1000px;
+}
 
+.ck-editor__editable {
+    min-height: 300px;
+}
+ 
+</style>
+<script src="https://ckeditor.com/apps/ckfinder/3.5.0/ckfinder.js"></script>
+
+<script src="/js/ckeditor.js"></script>
+
+<script>
+	let editor2;
+	//filebrowserImageUploadUrl:"/image_upload_action?type=Images"
+
+	ClassicEditor
+		.create( document.querySelector( '#editor' ), {
+			// toolbar: [ 'heading', '|', 'bold', 'italic', 'link' ]
+			ckfinder: {
+				uploadUrl: '/image_upload_action?type=Files&CKEditorFuncNum=2'
+			}
+		} )
+		.then( newEditor => {
+			editor2 = newEditor;
+			//editor = editor;
+		} )
+		.catch( err => {
+			console.error( err.stack );
+		} );
+</script>
+<script type="text/javascript">
+/*
 	(function () {
       //new FroalaEditor("#edit")
 
@@ -499,9 +534,24 @@
 
 		});
     })()
-
+*/
 	function submit_check() {
 
+		//CKEDITOR.replace( 'editor' );
+		
+
+		const editorData = editor2.getData();
+
+		//console.log(editorData);
+
+		//console.log(document.querySelector( '#editor' ));
+		//const editorData = editor.getData();
+		//console.log($("#editor").val())
+		//console.log(CKEDITOR.instances.editor.getData());
+		//console.log(editor.getData());
+		//return;
+		
+		
 		var form = document.board_write_form;
 
 		@if(request()->segment(2) == 'pcslider')
@@ -640,7 +690,7 @@
 				return false;
 			}
 
-		@elseif(request()->segment(2) == 'press')
+		@elseif(request()->segment(2) == 'section')
 
 
 			if(form.subject.value == "") {
@@ -649,23 +699,38 @@
 				return false;
 			}
 
+			/*
 			if(form.priority.value == "") {
 				alert('우선순위을 입력해주세요.');
 				form.priority.focus();
 				return false;
 			}
+			*/
 
-			let editor = new FroalaEditor('#edit', {}, function () {
+			//let editor = new FroalaEditor('#edit', {}, function () {
 				// console.log(editor.html.get())				
-			});		
+			//});		
 
-			if(editor.core.isEmpty() == true) {
+			//if(editor.core.isEmpty() == true) {
+			//	alert("게시글을 작성해주세요.");
+			//	editor.events.focus(true);
+			//	return false;
+			//}
+
+			if(editorData == "") {
 				alert("게시글을 작성해주세요.");
-				editor.events.focus(true);
+				//editor.events.focus(true);
+				editor2.editing.view.focus();
 				return false;
 			}
 
-			$("textarea[name=contents]").val(editor.html.get());
+			if(form.writer_file.value == "") {
+				alert('이미지를 선택해주세요.');
+				form.writer_file.focus();
+				return false;
+			}
+
+			//$("textarea[name=contents]").val(editor.html.get());
 
 			@elseif(request()->segment(2) == 'notice')
 
@@ -762,4 +827,5 @@
 		});
     })
 </script>
+
 @include('ey_footer')

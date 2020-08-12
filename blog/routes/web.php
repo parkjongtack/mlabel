@@ -36,12 +36,15 @@ Route::get('/sub/notice_view', 'Sub@notice_view');
 Route::get('/ey_admin/priority_change', 'Ey_admin@priority_change');
 //Route::get('/ey_admin/acc', 'Ey_admin@ey_acc');
 Route::post('/file_upload', 'Ey_admin@file_upload');
+Route::post('/image_upload_action', 'Ey_admin@image_upload_action');
+
 
 Route::get('/ey_admin/acc/write_board_form', 'Ey_admin@write_board_form');
 
 Route::get('/ey_admin/login', 'Ey_admin@ey_login');
 Route::post('/ey_admin/login_action', 'Ey_admin@ey_login_action');
 
+Route::post('/ey_admin/section/write_board_action', 'Ey_admin@write_board_action');
 Route::get('/ey_admin/pcslider', 'Ey_admin@ey_board_list');
 Route::post('/ey_admin/pcslider/control', 'Ey_admin@ey_control');
 Route::get('/ey_admin/pcslider/write_board_form', 'Ey_admin@write_board_form');

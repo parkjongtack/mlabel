@@ -94,7 +94,7 @@
                 </div>
                 <div class="quality_btn"><img src="/img/quality_btn.png" alt=""></div>
             </div>
-            <div class="quality_box">
+            <!-- <div class="quality_box">
                 <div class="quality_bg"></div>
                 <div class="quality_text">
                     <h4>라벨 인쇄</h4>
@@ -113,7 +113,7 @@
                     <p>라벨 인쇄 인쇄라벨 인쇄</p>
                 </div>
                 <div class="quality_btn"><img src="/img/quality_btn.png" alt=""></div>
-            </div>
+            </div> -->
         </div>
         <div class="quality_nav">
             <ul>
