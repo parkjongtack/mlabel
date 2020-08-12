@@ -35,7 +35,17 @@
         </div>
         <div class="quality_box_con swiper-container">
             <div class="swiper-wrapper">
+				@foreach($data2 as $data2)
                 <div class="quality_box swiper-slide">
+                    <div class="quality_bg" style="background: url(/storage/app/images/{{ $data2->attach_file }}) no-repeat center; background-size:cover;"></div>
+                    <div class="quality_text">
+                        <h4>{{ $data2->subject }}</h4>
+                        {!! $data2->contents !!}
+                    </div>
+                    <div class="quality_btn"><img src="/img/quality_btn.png" alt=""></div>
+                </div>
+				@endforeach
+                <!-- <div class="quality_box swiper-slide">
                     <div class="quality_bg"></div>
                     <div class="quality_text">
                         <h4>라벨 인쇄</h4>
@@ -54,17 +64,7 @@
                         <p>라벨 인쇄 인쇄라벨 인쇄</p>
                     </div>
                     <div class="quality_btn"><img src="/img/quality_btn.png" alt=""></div>
-                </div>
-                <div class="quality_box swiper-slide">
-                    <div class="quality_bg"></div>
-                    <div class="quality_text">
-                        <h4>라벨 인쇄</h4>
-                        <p>라벨 인쇄 인쇄라벨 인쇄</p>
-                        <p>라벨 인쇄 인쇄라벨 인쇄</p>
-                        <p>라벨 인쇄 인쇄라벨 인쇄</p>
-                    </div>
-                    <div class="quality_btn"><img src="/img/quality_btn.png" alt=""></div>
-                </div>
+                </div> -->
             </div>
             <div class="swiper-pagination"></div>
         </div>

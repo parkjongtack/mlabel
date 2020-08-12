@@ -47,6 +47,8 @@ class Main extends Controller
 		// 	$device = 'browser';
 		//  }
 
+		//$device = 'Android';
+
 		// echo $device;
 		$board_list_pcslider_main = DB::table('board') 
 								->select(DB::raw('*, substr(reg_date, 1, 10) as reg_date_cut'))
@@ -68,6 +70,66 @@ class Main extends Controller
 								->get();
 
 		$return_list['data2'] = $board_quality_section_array;
+
+		$board_label_section_array = DB::table('board') 
+								->select(DB::raw('*, substr(reg_date, 1, 10) as reg_date_cut'))
+								->where('board_type', 'label')
+								->where('use_status', 'Y')
+								->orderBy('idx','desc')
+								->limit(5)
+								->get();
+
+		$return_list['board_label'] = $board_label_section_array;
+
+		$board_pouch_section_array = DB::table('board') 
+								->select(DB::raw('*, substr(reg_date, 1, 10) as reg_date_cut'))
+								->where('board_type', 'pouch')
+								->where('use_status', 'Y')
+								->orderBy('idx','desc')
+								->limit(5)
+								->get();
+
+		$return_list['board_pouch'] = $board_pouch_section_array;
+
+		$board_inquiry_section_array = DB::table('board') 
+								->select(DB::raw('*, substr(reg_date, 1, 10) as reg_date_cut'))
+								->where('board_type', 'inquiry')
+								->where('use_status', 'Y')
+								->orderBy('idx','desc')
+								->limit(5)
+								->get();
+
+		$return_list['board_inquiry'] = $board_inquiry_section_array;
+
+		$board_notice_section_array = DB::table('board') 
+								->select(DB::raw('*, substr(reg_date, 1, 10) as reg_date_cut'))
+								->where('board_type', 'notice')
+								->where('use_status', 'Y')
+								->orderBy('idx','desc')
+								->limit(5)
+								->get();
+
+		$return_list['board_notice'] = $board_notice_section_array;
+
+		$board_sale_label_section_array = DB::table('board') 
+								->select(DB::raw('*, substr(reg_date, 1, 10) as reg_date_cut'))
+								->where('board_type', 'sale_label')
+								->where('use_status', 'Y')
+								->orderBy('idx','desc')
+								->limit(3)
+								->get();
+
+		$return_list['board_sale_label'] = $board_sale_label_section_array;
+
+		$board_sale_pouch_section_array = DB::table('board') 
+								->select(DB::raw('*, substr(reg_date, 1, 10) as reg_date_cut'))
+								->where('board_type', 'sale_pouch')
+								->where('use_status', 'Y')
+								->orderBy('idx','desc')
+								->limit(3)
+								->get();
+
+		$return_list['board_sale_pouch'] = $board_sale_pouch_section_array;
 
 		return view($device == "browser" ? 'index' : 'm/index' , $return_list);
 		// return view('index', $return_list);

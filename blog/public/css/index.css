@@ -137,7 +137,7 @@ a,p,span,h1,h2,h3,h4,h5,h6,td,th{letter-spacing: -0.5px;transform:skew(-0.03deg)
 .quality_title h2{font-size: 28px; font-weight: 800; color: #000;margin-bottom: 10px;}
 .quality_title p{font-size: 15px; color: #4f4f4f;}
 .quality_box_con{margin-top: 35px; font-size: 0;}
-.quality_box{width: 410px; display: inline-block; font-size: 15px; text-align: center; background-color: #fff;}
+.quality_box{width: 410px; display: inline-block; font-size: 15px; text-align: center; background-color: #fff; vertical-align:top}
 .quality_box:nth-child(2){margin: 0 20px;}
 .quality_box .quality_bg{width: 100%; height: 290px; background: url(/img/quality_bg01.png);}
 .quality_text{padding: 20px 0 17px;}
