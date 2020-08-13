@@ -124,6 +124,120 @@
 				</div>
 			</div>
 			@endif
+			@if(request()->segment(2) == 'label' || request()->segment(2) == 'pouch' || request()->segment(2) == 'inquiry')
+            <div class="write_line">
+                <div class="all_line">
+						<div class="line_title">
+							업체명
+						</div>
+						<div class="line_content">
+							<input type="text" name="corp_name" />
+						</div>
+                </div>
+            </div>
+            <div class="write_line">
+                <div class="all_line">
+						<div class="line_title">
+							담당자명
+						</div>
+						<div class="line_content">
+							<input type="text" name="manager_name" />
+						</div>
+                </div>
+            </div>
+            <div class="write_line">
+                <div class="all_line">
+						<div class="line_title">
+							비밀번호
+						</div>
+						<div class="line_content">
+							<input type="password" name="passwd" />
+						</div>
+                </div>
+            </div>
+            <div class="write_line">
+                <div class="all_line">
+						<div class="line_title">
+							연락처
+						</div>
+						<div class="line_content">
+							<input type="text" name="tel" />
+						</div>
+                </div>
+            </div>
+            <div class="write_line">
+                <div class="all_line">
+						<div class="line_title">
+							이메일
+						</div>
+						<div class="line_content">
+							<input type="text" name="email" />
+						</div>
+                </div>
+            </div>
+			@endif
+			@if(request()->segment(2) == 'sale_label' || request()->segment(2) == 'sale_pouch')
+            <div class="write_line">
+                <div class="all_line">
+						<div class="line_title">
+							업체명
+						</div>
+						<div class="line_content">
+							<input type="text" name="corp_name" />
+						</div>
+                </div>
+            </div>
+            <div class="write_line">
+                <div class="all_line">
+						<div class="line_title">
+							제품명
+						</div>
+						<div class="line_content">
+							<input type="text" name="product_name" />
+						</div>
+                </div>
+            </div>
+            <div class="write_line">
+                <div class="all_line">
+						<div class="line_title">
+							재질
+						</div>
+						<div class="line_content">
+							<input type="text" name="material_name" />
+						</div>
+                </div>
+            </div>
+            <div class="write_line">
+                <div class="all_line">
+						<div class="line_title">
+							사이즈
+						</div>
+						<div class="line_content">
+							<input type="text" name="size" />
+						</div>
+                </div>
+            </div>
+            <div class="write_line">
+                <div class="all_line">
+						<div class="line_title">
+							유형
+						</div>
+						<div class="line_content">
+							<input type="text" name="type_set" />
+						</div>
+                </div>
+            </div>
+            <div class="write_line">
+                <div class="all_line">
+						<div class="line_title">
+							기타
+						</div>
+						<div class="line_content">
+							<input type="text" name="etc" />
+						</div>
+                </div>
+            </div>
+			@endif
 			@if(request()->segment(2) == 'beds')
             <div class="write_line">
                 <div class="all_line">

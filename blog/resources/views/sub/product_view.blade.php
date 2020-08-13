@@ -10,14 +10,14 @@
         <div class="product_detail">
             <div class="info_outer">
                 <div class="img_area">
-                    <img src="/img/sale_img1.png" alt="">
+                    <img src="/storage/app/images/{{ $board_array->attach_file }}" alt="">
                 </div>
                 <div class="text_area">
-                    <h2>짜먹는 청귤 젤리</h2>
+                    <h2>{{ $board_array->subject }}</h2>
                     <div class="info_box">
                         <div class="info_line">
                             <p class="info_title">업체명</p>
-                            <p class="info_text">명성라벨</p>
+                            <p class="info_text">{{ $board_array->corp_name }}</p>
                         </div>
                         <div class="info_line">
                             <p class="info_title">제품명</p>

@@ -98,7 +98,7 @@
                     <p>라벨 인쇄 인쇄라벨 인쇄</p> -->
 					{!! $data2->contents !!}
                 </div>
-                <div class="quality_btn" style="cursor:pointer;" onclick="javascript:location.href=''"><img src="/img/quality_btn.png" alt=""></div>
+                <div class="quality_btn" style="cursor:pointer;" onclick="javascript:location.href='{{ $data2->link_value }}'"><img src="/img/quality_btn.png" alt=""></div>
             </div>
 			@endforeach
             <!-- <div class="quality_box">

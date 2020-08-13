@@ -2,7 +2,7 @@
 <div class="sub_sec product">
     <div class="sec_title">
         <div class="sec_title_inner">
-            <h2>라벨인쇄</h2>
+            <h2>@if(request()->segment(3) == 'label')라벨인쇄@else파우치인쇄@endif</h2>
             <p>최고의 퀄리티를 위한 최상의 장비를 보유하고 있습니다.</p>
         </div>
     </div>

@@ -341,6 +341,14 @@ class Ey_admin extends Controller
 					$file_array[1] = null;
 				}
 
+				if($request->writer_file_mobile) {
+					$file = $request->writer_file_mobile->store('images');
+					$file_array2 = explode("/", $file);
+					copy("../storage/app/images/".$file_array2[1], "./storage/app/images/".$file_array2[1]);
+				} else {
+					$file_array2[1] = null;
+				}
+
 				if($file_array[1] != null) {
 					DB::table('board')->where('idx', $request->board_idx)->update(
 						[
@@ -348,6 +356,16 @@ class Ey_admin extends Controller
 							'contents' => $request->contents,
 							'category' => $request->category,
 							'category2' => $request->category2,
+							'corp_name' => $request->corp_name,
+							'manager_name' => $request->manager_name,
+							'passwd' => $request->passwd,
+							'tel' => $request->tel,
+							'email' => $request->email,
+							'product_name' => $request->product_name,
+							'material_name' => $request->material_name,
+							'size' => $request->size,
+							'type_set' => $request->type_set,
+							'etc' => $request->etc,
 							'writer' => $request->writer,
 							'ip_addr' => request()->ip(),
 							'board_type' => $request->board_type,
@@ -373,6 +391,16 @@ class Ey_admin extends Controller
 							'contents' => $request->contents,
 							'category' => $request->category,
 							'category2' => $request->category2,
+							'corp_name' => $request->corp_name,
+							'manager_name' => $request->manager_name,
+							'passwd' => $request->passwd,
+							'tel' => $request->tel,
+							'email' => $request->email,
+							'product_name' => $request->product_name,
+							'material_name' => $request->material_name,
+							'size' => $request->size,
+							'type_set' => $request->type_set,
+							'etc' => $request->etc,
 							'writer' => $request->writer,
 							'ip_addr' => request()->ip(),
 							'board_type' => $request->board_type,
@@ -391,6 +419,16 @@ class Ey_admin extends Controller
 
 				}
 				
+				if($file_array2[1] != null) {
+
+					DB::table('board')->where('idx', $request->board_idx)->update(
+						[
+							'attach_file2' => $file_array2[1],
+						]
+					);
+
+				}
+
 				echo "<script>alert('글 수정이 완료되었습니다.');location.href = '/ey_admin/".$request->board_type."';</script>";
 				exit;
 
@@ -404,16 +442,35 @@ class Ey_admin extends Controller
 					$file_array[1] = null;
 				}
 
+				if($request->writer_file_mobile) {
+					$file = $request->writer_file_mobile->store('images');
+					$file_array2 = explode("/", $file);
+					copy("../storage/app/images/".$file_array2[1], "./storage/app/images/".$file_array2[1]);
+				} else {
+					$file_array2[1] = null;
+				}
+
 				DB::table('board')->insert(
 					[
 						'subject' => $request->subject,
 						'contents' => $request->contents,
 						'category' => $request->category,
 						'category2' => $request->category2,
+						'corp_name' => $request->corp_name,
+						'manager_name' => $request->manager_name,
+						'passwd' => $request->passwd,
+						'tel' => $request->tel,
+						'email' => $request->email,
+						'product_name' => $request->product_name,
+						'material_name' => $request->material_name,
+						'size' => $request->size,
+						'type_set' => $request->type_set,
+						'etc' => $request->etc,
 						'writer' => $request->writer,
 						'ip_addr' => request()->ip(),
 						'board_type' => $request->board_type,
 						'attach_file' => $file_array[1],
+						'attach_file2' => $file_array2[1],
 						'parno' => 0,
 						'prino' => $prino_now,
 						'depth' => 1,
