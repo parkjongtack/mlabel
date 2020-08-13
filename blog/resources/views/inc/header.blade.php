@@ -9,7 +9,7 @@
                     <li><a href="/sub/equipment?category2=1">보유장비</a></li>
                     <li><a href="/sub/product/label?category2=all">라벨인쇄</a></li>
                     <li><a href="/sub/product/pouch?category2=all">파우치인쇄</a></li>
-                    <li><a href="/sub/notice1">견적문의</a></li>
+                    <li><a href="/sub/notice_write?board_type=sale_label">견적문의</a></li>
                 </ul>
             </div>
         </div>
