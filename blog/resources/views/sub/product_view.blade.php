@@ -21,36 +21,43 @@
                         </div>
                         <div class="info_line">
                             <p class="info_title">제품명</p>
-                            <p class="info_text">짜먹는 청귤 젤리</p>
+                            <p class="info_text">{{ $board_array->product_name }}</p>
                         </div>
                         <div class="info_line">
                             <p class="info_title">재질</p>
-                            <p class="info_text">PET + AL + NY + LLDPE</p>
+                            <p class="info_text">{{ $board_array->material_name }}</p>
                         </div>
                         <div class="info_line">
                             <p class="info_title">사이즈</p>
-                            <p class="info_text">90 * 130 * 50</p>
+                            <p class="info_text">{{ $board_array->size }}</p>
                         </div>
                         <div class="info_line">
                             <p class="info_title">유형</p>
-                            <p class="info_text">스탠드 스파우트 파우치</p>
+                            <p class="info_text">{{ $board_array->type_set }}</p>
                         </div>
                         <div class="info_line">
                             <p class="info_title">기타</p>
-                            <p class="info_text"></p>
+                            <p class="info_text">{{ $board_array->etc }}</p>
                         </div>
                     </div>
-                    <a href="#none">견적문의</a>
+                    <a href="/sub/notice_write?board_type={{ $_GET['board_type'] }}">견적문의</a>
                 </div>
             </div>
             <div class="info_nav">
-                <a href="#none">목록</a>
-                <a href="#none">다음글</a>
-                <a href="#none">이전글</a>
+                <a href="@if($_GET['board_type'] == 'sale_pouch') /sub/product/pouch?category2=all @else /sub/product/label?category2=all @endif">목록</a>
+                @if($board_next_array_cnt > 0)
+				<a href="/sub/product_view?idx={{ $board_next_array->idx }}&board_type={{ $_GET['board_type'] }}">다음글</a>
+				@endif
+				@if($board_past_array_cnt > 0)
+                <a href="/sub/product_view?idx={{ $board_past_array->idx }}&board_type={{ $_GET['board_type'] }}">이전글</a>
+				@endif
             </div>
+<!-- 
+ -->
             <div class="info_detail">
                 <h3>상세설명</h3>
-                <img src="/img/detail_sample.png" alt="">
+				{!! $board_array->contents !!}
+                <!-- <img src="/img/detail_sample.png" alt=""> -->
             </div>
         </div>
     </div>

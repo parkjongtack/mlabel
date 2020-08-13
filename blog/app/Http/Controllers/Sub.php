@@ -199,16 +199,86 @@ class Sub extends Controller
 
 		$board_array = DB::table('board') 
 								->select(DB::raw('*, substr(reg_date, 1, 10) as reg_date_cut'))
-								->where('board_type', 'sale_pouch')
 								->where('use_status', 'Y')
 								->where('idx', $_GET['idx'])
 								->where('board_type', $_GET['board_type'])
 								->orderBy('idx','desc')
-								->get();
+								->first();
 
 		$return_list['board_array'] = $board_array;	
 
+		$board_past_array_cnt = DB::table('board') 
+								->select(DB::raw('*, substr(reg_date, 1, 10) as reg_date_cut'))
+								->where('use_status', 'Y')
+								->where('idx', '<', $_GET['idx'])
+								->where('board_type', $_GET['board_type'])
+								->orderBy('idx','desc')
+								->get()->count();
+
+		if($board_past_array_cnt > 0) {
+
+			$board_past_array = DB::table('board') 
+									->select(DB::raw('*, substr(reg_date, 1, 10) as reg_date_cut'))
+									->where('use_status', 'Y')
+									->where('idx', '<', $_GET['idx'])
+									->where('board_type', $_GET['board_type'])
+									->orderBy('idx','desc')
+									->first();
+
+
+			$return_list['board_past_array'] = $board_past_array;	
+
+		}
+
+		$board_next_array_cnt = DB::table('board') 
+								->select(DB::raw('*, substr(reg_date, 1, 10) as reg_date_cut'))
+								->where('use_status', 'Y')
+								->where('idx', '>', $_GET['idx'])
+								->where('board_type', $_GET['board_type'])
+								->orderBy('idx','asc')
+								->get()->count();
+
+		if($board_next_array_cnt > 0) {
+
+			$board_next_array = DB::table('board') 
+									->select(DB::raw('*, substr(reg_date, 1, 10) as reg_date_cut'))
+									->where('use_status', 'Y')
+									->where('idx', '>', $_GET['idx'])
+									->where('board_type', $_GET['board_type'])
+									->orderBy('idx','asc')
+									->first();
+			$return_list['board_next_array'] = $board_next_array;	
+
+		}
+
+		$return_list['board_past_array_cnt'] = $board_past_array_cnt;	
+		$return_list['board_next_array_cnt'] = $board_next_array_cnt;	
+
+
 		return view($device == "browser" ? '/sub/product_view' : '/m/sub/product_view' , $return_list);
+
+	}
+
+	public function request_write(Request $request) {
+
+		$commons = new CommonFunction();
+
+		$agent = $commons->getBrowser();
+		$device = "";
+		$walletSize = 0;
+		$curreny_id = !$request->cu ? '' : $request->cu;
+		
+		if(stripos($agent['userAgent'], 'android-web-app') !== false) {
+		   $device = 'Android';
+		} else if(stripos($agent['userAgent'], 'Android') !== false) {
+		   $device = 'Android';
+		} else if(stripos($agent['userAgent'], 'iPhone') !== false) {
+		   $device = 'iPhone';
+		} else {
+		   $device = 'browser';
+		}
+
+		return view($device == "browser" ? '/sub/request_write' : '/m/sub/request_write' , $request);
 
 	}
 

@@ -27,9 +27,9 @@ Route::get('/sub/product/label', 'Sub@product');
 Route::get('/sub/product/pouch', 'Sub@product');
 Route::get('/sub/product_view', 'Sub@product_view');
 Route::get('/sub/notice1', 'Sub@notice');
-Route::get('/sub/inquiry1', 'Sub@notice');
-Route::get('/sub/inquiry2', 'Sub@notice');
-Route::get('/sub/notice2', 'Sub@notice');
+Route::get('/sub/request_write', 'Sub@request_write');
+Route::get('/sub/inquiry2', 'Sub@request_write');
+Route::get('/sub/notice2', 'Sub@request_write');
 Route::get('/sub/notice_write', 'Sub@notice_write');
 Route::get('/sub/notice_view', 'Sub@notice_view');
 

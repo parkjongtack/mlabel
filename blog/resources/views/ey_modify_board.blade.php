@@ -407,7 +407,7 @@
                 </div>
 			</span>
 			@endif
-			@if(request()->segment(2) == 'beds' || request()->segment(2) == 'acc' || request()->segment(2) == 'pcslider')
+			@if(request()->segment(2) == 'beds' || request()->segment(2) == 'acc' || request()->segment(2) == 'pcslider' || request()->segment(2) == 'section' || request()->segment(2) == 'label' || request()->segment(2) == 'inquiry' || request()->segment(2) == 'notice' || request()->segment(2) == 'equipment' || request()->segment(2) == 'pouch')
             <span id="append_target_mobile">
                 <div class="write_line cate_file">
                     <div class="all_line">
@@ -422,7 +422,7 @@
 							@elseif(request()->segment(2) == 'beds')
 							<span class="set">(사이즈 1400x960)</span>
 							@endif
-							@if(request()->segment(2) != 'pcslider' && request()->segment(2) != 'press' && request()->segment(2) != 'beds' && request()->segment(2) != 'acc' && request()->segment(2) != 'popup')
+							@if(request()->segment(2) != 'pcslider' && request()->segment(2) != 'press' && request()->segment(2) != 'beds' && request()->segment(2) != 'acc' && request()->segment(2) != 'popup' && request()->segment(2) != 'section' && request()->segment(2) != 'label' && request()->segment(2) != 'inquiry' && request()->segment(2) != 'notice' && request()->segment(2) != 'equipment' && request()->segment(2) != 'pouch')
                             <span style="cursor: pointer" class="add_file">파일추가 +</span>
 							@endif
                         </div>

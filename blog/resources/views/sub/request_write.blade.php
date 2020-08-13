@@ -17,25 +17,6 @@
         </div>
         <script>
             $(function(){
-                var url = "{{request()->segment(2)}}";
-                switch (url){
-                    case "notice1":
-                        $(".sub_nav li").eq(0).addClass("on");
-                        break;
-
-                    case "inquiry1":
-                        $(".sub_nav li").eq(1).addClass("on");
-                        break;
-
-                    case "inquiry2":
-                        $(".sub_nav li").eq(2).addClass("on");
-                        break;
-
-                    case "notice2":
-                        $(".sub_nav li").eq(3).addClass("on");
-                        break;
-                }
-
                 var url = "{{ $_GET['board_type'] }}";
                 switch (url){
                     case "notice":

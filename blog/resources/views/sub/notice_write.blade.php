@@ -9,12 +9,35 @@
     <div class="inner">
         <div class="sub_nav">
             <ul>
-                <li class="on"><a href="/sub/notice1">공지사항</a></li>
-                <li><a href="/sub/inquiry1">라벨인쇄 견적문의</a></li>
-                <li><a href="/sub/inquiry2">파우치 견적문의</a></li>
-                <li><a href="/sub/notice2">문의사항</a></li>
+                <li><a href="/sub/notice_write?board_type=notice">공지사항</a></li>
+                <li><a href="/sub/notice_write?board_type=sale_label">라벨인쇄 견적문의</a></li>
+                <li><a href="/sub/notice_write?board_type=sale_pouch">파우치 견적문의</a></li>
+                <li><a href="/sub/notice_write?board_type=inquiry">문의사항</a></li>
             </ul>
         </div>
+        <script>
+            $(function(){
+                var url = "{{ $_GET['board_type'] }}";
+                switch (url){
+                    case "notice":
+                        $(".sub_nav li").eq(0).addClass("on");
+                        break;
+
+                    case "sale_label":
+                        $(".sub_nav li").eq(1).addClass("on");
+                        break;
+
+                    case "sale_pouch":
+                        $(".sub_nav li").eq(2).addClass("on");
+                        break;
+
+                    case "inquiry":
+                        $(".sub_nav li").eq(3).addClass("on");
+                        break;
+                }
+
+            });
+        </script>
         <div class="notice_write">
             <form action="">
                 <div class="write_line">
