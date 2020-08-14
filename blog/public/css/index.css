@@ -309,6 +309,7 @@ a,p,span,h1,h2,h3,h4,h5,h6,td,th{letter-spacing: -0.5px;transform:skew(-0.03deg)
 /*notice_write*/
 .notice_write .write_line{border-top: 1px solid #b0b0b0;}
 .notice_write .write_line.last{border-bottom: 1px solid #b0b0b0;}
+.notice_write .write_line.last img{display: inline-block; vertical-align: middle;}
 .notice_write .write_title,.notice_write .write_input{display: inline-block;vertical-align: middle; font-size: 18px; color: #686868;}
 .notice_write .write_title.textarea_outer{height: 295px;}
 .notice_write .write_title{background-color: #f5f6fa; width: 215px; padding: 17px 0; padding-left: 30px;}

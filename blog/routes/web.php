@@ -123,3 +123,25 @@ Route::get('/ey_admin/pcpopup', 'Ey_admin@ey_pcpopup');
 Route::get('/ey_admin/mopopup', 'Ey_admin@ey_mopopup');
 //Route::get('/ey_admin/acc', 'Ey_admin@ey_acc');
 Route::get('/ey_admin/logout', 'Ey_admin@ey_logout');
+
+//캡차
+    // [your site path]/Http/routes.php
+    Route::any('captcha-test', function() {
+        if (request()->getMethod() == 'POST') {
+            $rules = ['captcha' => 'required|captcha'];
+            $validator = validator()->make(request()->all(), $rules);
+            if ($validator->fails()) {
+                echo '<p style="color: #ff0000;">Incorrect!</p>';
+            } else {
+                echo '<p style="color: #00ff30;">Matched :)</p>';
+            }
+        }
+    
+        $form = '<form method="post" action="captcha-test">';
+        $form .= '<input type="hidden" name="_token" value="' . csrf_token() . '">';
+        $form .= '<p>' . captcha_img() . '</p>';
+        $form .= '<p><input type="text" name="captcha"></p>';
+        $form .= '<p><button type="submit" name="check">Check</button></p>';
+        $form .= '</form>';
+        return $form;
+    });

@@ -114,7 +114,7 @@
                     </div>
                     <div class="write_input">
                         <input type="text" readonly class="x2" id="file2_">
-                        <label for="file2">첨부</label><input type="file" id="file2" name="writer_file">
+                        <label for="file2">첨부</label><input type="file" id="file2" name="writer_file" onchange="uploadChange(this);">
                     </div>
                 </div>
                 <div class="write_line">
@@ -123,7 +123,7 @@
                     </div>
                     <div class="write_input">
                         <input type="text" readonly class="x2" id="file3_">
-                        <label for="file3">첨부</label><input type="file" id="file3" name="writer_file2">
+                        <label for="file3">첨부</label><input type="file" id="file3" name="writer_file2" onchange="uploadChange(this);">
                     </div>
                 </div>
                 <div class="write_line last">
@@ -131,15 +131,27 @@
                         <p>자동등록방지</p>
                     </div>
                     <div class="write_input">
-                        <input type="text" name="">
+                        <input type="text" name="captcha" id="captcha">
                     </div>
+                    {!! Captcha::img() !!}
                 </div>
                 <div class="submit_box">
                     <input type="submit" value="작성완료">
                     <input type="reset" value="취소하기">
                 </div>
+                
             </form>
         </div>
     </div>
 </div>
+<script>
+$("#file2").on('change',function(){
+  var fileName = $("#file2").val();
+  $("#file2_").val(fileName);
+});
+$("#file3").on('change',function(){
+  var fileName = $("#file3").val();
+  $("#file3_").val(fileName);
+});
+</script>
 @include('/inc/footer')

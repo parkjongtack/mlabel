@@ -1138,7 +1138,17 @@ class Sub extends Controller
 					//->where('board_type', $request->board_type)
 					->where('idx', $request->board_idx)
 					->first();
-
+		
+		//echo ;
+		// $this->validate($request, [
+        //     'captcha' => 'required|captcha'
+        // ]);
+		// if ($ishuman){
+		// 	echo "OK";
+		// }else{
+		// 	echo "FUCK";
+		// }
+		// exit;
 		if($board_cnt <= 0) {
 			$parno_now = 0;
 			$prino_now = 0;
