@@ -9,13 +9,38 @@
     <div class="inner">
         <div class="sub_nav">
             <ul>
-                <li class="on">CEO 인사말</li>
+                <li>CEO 인사말</li>
                 <li>연혁</li>
                 <li>비전</li>
                 <li>오시는 길</li>
                 <li>거래처 및 인증서</li>
             </ul>
         </div>
+        <script>
+            $(function(){
+                var url = "{{ $_GET['page'] }}";
+                switch (url){
+                    case "1":
+                        $(".sub_nav li").eq(0).addClass("on");
+                        break;
+
+                    case "2":
+                        $(".sub_nav li").eq(1).addClass("on");
+                        break;
+
+                    case "3":
+                        $(".sub_nav li").eq(2).addClass("on");
+                        break;
+
+                    case "4":
+                        $(".sub_nav li").eq(3).addClass("on");
+                        break;
+                    case "5":
+                        $(".sub_nav li").eq(3).addClass("on");
+                        break;
+                }
+            });
+        </script>
         <div class="sub_layout lay1 on">
             <h2>
                 <span class="blue">고객</span>의 <span class="org">성공이</span><br>
@@ -118,7 +143,9 @@
 </div>
 <script>
     $(function(){
-        
+        var para = 'lay{{@$_GET[page]}}';
+        $(".sub_layout").removeClass('on');
+        $("."+para).addClass("on");
     });
 </script>
 @include('inc/footer')

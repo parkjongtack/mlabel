@@ -55,7 +55,7 @@ class Main extends Controller
 								->where('board_type', 'pcslider')
 								//->where('start_period', '<=', date("Y-m-d"))
 								//->where('end_period', '>=', date("Y-m-d"))
-								->where('use_status', 'Y')
+								//->where('use_status', 'Y')
 								->orderBy('priority','asc')
 								->get();
 
@@ -74,7 +74,7 @@ class Main extends Controller
 		$board_label_section_array = DB::table('board') 
 								->select(DB::raw('*, substr(reg_date, 1, 10) as reg_date_cut'))
 								->where('board_type', 'label')
-								->where('use_status', 'Y')
+								//->where('use_status', 'Y')
 								->orderBy('idx','desc')
 								->limit(5)
 								->get();
@@ -84,7 +84,7 @@ class Main extends Controller
 		$board_pouch_section_array = DB::table('board') 
 								->select(DB::raw('*, substr(reg_date, 1, 10) as reg_date_cut'))
 								->where('board_type', 'pouch')
-								->where('use_status', 'Y')
+								//->where('use_status', 'Y')
 								->orderBy('idx','desc')
 								->limit(5)
 								->get();

@@ -13,5 +13,6 @@
         <script src="/js/swiper.min.js"></script>
         <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/svg.js/3.0.16/svg.min.js"></script>
+        <script src="https://kit.fontawesome.com/7f5faa19ba.js" crossorigin="anonymous"></script>
     </head>
 @include('/inc/header')

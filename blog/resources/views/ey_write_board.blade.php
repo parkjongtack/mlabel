@@ -267,6 +267,7 @@
 						</div>
 						<div class="line_content">
 							<input type="text" name="subject" />
+							<label for="" style="vertical-align:middle;"><input type="checkbox" name="top_type" value="Y">최상단 공지지정</label>
 						</div>
                 </div>
             </div>

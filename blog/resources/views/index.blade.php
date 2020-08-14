@@ -31,7 +31,7 @@
         <div class="notice_list">
             <ul>
 				@foreach($board_label as $board_label)
-                <li><a href="#none">{{ $board_label->subject }}</a><span>{{ $board_label->reg_date_cut }}</span></li>
+                <li><a href="/sub/notice_view?board_type={{ $board_label->board_type }}&board_idx={{ $board_label->idx }}">{{ $board_label->subject }}</a><span>{{ $board_label->reg_date_cut }}</span></li>
                 @endforeach
 				<!-- <li><a href="#none">견적문의</a><span>20.04.21</span></li>
                 <li><a href="#none">견적문의</a><span>20.04.21</span></li>
@@ -45,7 +45,7 @@
         <div class="notice_list">
             <ul>
 				@foreach($board_pouch as $board_pouch)
-                <li><a href="#none">{{ $board_pouch->subject }}</a><span>{{ $board_pouch->reg_date_cut }}</span></li>
+                <li><a href="/sub/notice_view?board_type={{ $board_pouch->board_type }}&board_idx={{ $board_pouch->idx }}">{{ $board_pouch->subject }}</a><span>{{ $board_pouch->reg_date_cut }}</span></li>
                 @endforeach
                 <!-- <li><a href="#none">견적문의</a><span>20.04.21</span></li>
                 <li><a href="#none">견적문의</a><span>20.04.21</span></li>
@@ -59,7 +59,7 @@
         <div class="notice_list">
             <ul>
 				@foreach($board_inquiry as $board_inquiry)
-                <li><a href="#none">{{ $board_inquiry->subject }}</a><span>{{ $board_inquiry->reg_date_cut }}</span></li>
+                <li><a href="/sub/notice_view?board_type={{ $board_inquiry->board_type }}&board_idx={{ $board_inquiry->idx }}">{{ $board_inquiry->subject }}</a><span>{{ $board_inquiry->reg_date_cut }}</span></li>
                 @endforeach
                 <!-- <li><a href="#none">견적문의</a><span>20.04.21</span></li>
                 <li><a href="#none">견적문의</a><span>20.04.21</span></li>
@@ -73,7 +73,7 @@
         <div class="notice_list">
             <ul>
 				@foreach($board_notice as $board_notice)
-                <li><a href="#none">{{ $board_notice->subject }}</a><span>{{ $board_notice->reg_date_cut }}</span></li>
+                <li><a href="/sub/notice_view?board_type={{ $board_notice->board_type }}&board_idx={{ $board_notice->idx }}">{{ $board_notice->subject }}</a><span>{{ $board_notice->reg_date_cut }}</span></li>
                 @endforeach
             </ul>
         </div>
@@ -124,12 +124,12 @@
         </div>
         <div class="quality_nav">
             <ul>
-                <li><a href="#none"><img src="/img/quality_nav1.png" alt=""></a></li>
-                <li><a href="#none"><img src="/img/quality_nav2.png" alt=""></a></li>
-                <li><a href="#none"><img src="/img/quality_nav3.png" alt=""></a></li>
-                <li><a href="#none"><img src="/img/quality_nav4.png" alt=""></a></li>
-                <li><a href="#none"><img src="/img/quality_nav5.png" alt=""></a></li>
-                <li><a href="#none"><img src="/img/quality_nav6.png" alt=""></a></li>
+                <li><a href="/sub/company?page=1"><img src="/img/quality_nav1.png" alt=""></a></li>
+                <li><a href="/sub/company?page=2"><img src="/img/quality_nav2.png" alt=""></a></li>
+                <li><a href="/sub/company?page=3"><img src="/img/quality_nav3.png" alt=""></a></li>
+                <li><a href="/sub/equipment?category2=1"><img src="/img/quality_nav4.png" alt=""></a></li>
+                <li><a href="/sub/company?page=5"><img src="/img/quality_nav5.png" alt=""></a></li>
+                <li><a href="/sub/company?page=4"><img src="/img/quality_nav6.png" alt=""></a></li>
             </ul>
         </div>
     </div>
@@ -149,7 +149,7 @@
     <ul class="inner">
 		@foreach($board_sale_label as $board_sale_label)
         <li>
-            <a href="#none">
+            <a href="/sub/product_view?idx={{ $board_sale_label->idx }}&board_type={{$board_sale_label->board_type}}">
                 <div class="sale_img_box">
                     <img src="/storage/app/images/{{ $board_sale_label->attach_file }}" alt="">
                 </div>
@@ -239,7 +239,7 @@
         </li> -->
     </ul>
     <div class="sale_more_btn">
-        <a href="/sub/product/label">더보기</a>
+        <a href="/sub/product/label?category2=all">더보기</a>
     </div>
 </div>
 <div class="see_more_con num2">
@@ -257,7 +257,7 @@
     <ul class="inner">
 		@foreach($board_sale_pouch as $board_sale_pouch)
         <li>
-            <a href="#none">
+        <a href="/sub/product_view?idx={{ $board_sale_pouch->idx }}&board_type={{$board_sale_pouch->board_type}}">
                 <div class="sale_img_box">
                     <img src="/storage/app/images/{{ $board_sale_pouch->attach_file }}" alt="">
                 </div>
@@ -358,7 +358,7 @@
         </li> -->
     </ul>
     <div class="sale_more_btn">
-        <a href="/sub/product/pouch">더보기</a>
+        <a href="/sub/product/pouch?category2=all">더보기</a>
     </div>
 </div>
 @include('inc/footer')

@@ -95,7 +95,7 @@ class Sub extends Controller
 		}
 
 		$board_equipment_array = DB::table('board') 
-								->select(DB::raw('*, substr(reg_date, 1, 10) as reg_date_cut'))
+								->select(DB::raw('*, substr(reg_date, 1, 10) as reg_date_cut, substring_index(link_value,"/",-1) as link_key'))
 								->where('board_type', 'equipment')
 								->where('use_status', 'Y')
 								->where('category2', $_GET['category2'])
@@ -301,7 +301,139 @@ class Sub extends Controller
 		   $device = 'browser';
 		}
 
-		return view($device == "browser" ? '/sub/notice' : '/m/sub/notice' , $request);
+		if($_GET['board_type'] == "notice") {
+			$boardType = "notice";
+		} else if($_GET['board_type'] == "label") {
+			$boardType = "label";
+		} else if($_GET['board_type'] == "pouch") {
+			$boardType = "pouch";
+		} else if($_GET['board_type'] == "inquiry") {
+			$boardType = "inquiry";
+		}
+
+		$paging_option = array(
+			"pageSize" => 10,
+			"blockSize" => 5
+		);
+
+		$thisPage = ($request->page) ? $request->page : 1 ;
+		$paging = new PagingFunction($paging_option);
+
+		$totalQuery = DB::table('board');
+		if($request->key != "") {
+			$totalQuery->where(function($totalQuery) use($request){
+				$totalQuery->where('subject', 'like', '%' . $request->key . '%')
+				->orWhere('contents', 'like', '%' . $request->key . '%');
+			});
+		}
+
+		$totalQuery->where('board_type', $boardType);
+        $totalQuery->where(function($query_set) {
+                $query_set->where('top_type', "<>", 'Y')
+                ->orWhere('top_type', null);
+        });
+
+		if($request->category_type) {
+			$totalQuery->where('category', $request->category_type);
+		}
+
+		if(request()->segment(2) == "ey_data_room" && !$request->category_type) {
+			$totalQuery->where('category', 1);
+		}
+
+		$totalCount = $totalQuery->get()->count();
+		
+		$paging_view = $paging->paging($totalCount, $thisPage, "page");
+		
+		$query = DB::table('board')
+				->select(DB::raw('*, substr(reg_date, 1, 10) as reg_date_cut'))
+				->orderBy('idx', 'desc');
+				
+		if($request->key != "") {
+			$query->where(function($query) use($request){
+				$query->where('subject', 'like', '%' . $request->key . '%')
+				->orWhere('contents', 'like', '%' . $request->key . '%');
+			});
+		}
+
+		$query->where('board_type', $boardType);
+        $query->where(function($query_set2) {
+                $query_set2->where('top_type', 'Y')
+                ->orWhere('top_type', null);
+        });
+		
+		//$query->where('top_type', '<>', 'Y');
+		//$query->orWhere('top_type', null);
+		
+		if($request->category_type) {
+			$query->where('category', $request->category_type);
+		}
+
+		if(request()->segment(2) == "ey_data_room" && !$request->category_type) {
+			$query->where('category', 1);
+		}
+
+		if($request->page != "" && $request->page > 1) {
+			$query->skip(($request->page - 1) * $paging_option["pageSize"]);
+		}
+
+		$list = $query->take($paging_option["pageSize"])->get();
+		
+		// 게시판 출력 글 번호 계산
+		$number = $totalCount-($paging_option["pageSize"]*($thisPage-1));
+
+		$board_top_count = DB::table('board') 
+					->select(DB::raw('*'))
+					->where('board_type', $boardType)
+					->where('top_type', 'Y')
+					->get()->count();
+
+		$board_top_list = DB::table('board') 
+					->select(DB::raw('*, substr(reg_date, 1, 10) as reg_date_cut'))
+					->where('board_type', $boardType)
+					->where('top_type', 'Y')
+					->get();
+
+		//검색
+		if($request->search_type != ''){
+
+		echo $request->board_type.'<br>';
+			$board_search = DB::table('board')
+							->select(DB::raw('*'))
+							->where($request->search_type, 'like', '%'.$request->search_word.'%')
+							// ->orWhere('manager_name', 'like', '%'.$request->search_word.'%')
+							->where('board_type',$request->board_type)
+							->get();
+							//print_r($board_search);
+							//exit;
+
+			$return_list["data"] = $board_search;
+			$return_list["board_top_count"] = $board_top_count;
+			$return_list["board_top_list"] = $board_top_list;
+			$return_list["data2"] = $list;
+			$return_list["number"] = $number;
+			$return_list["key"] = $request->key;
+			$return_list["totalCount"] = $totalCount;
+			$return_list["paging_view"] = $paging_view;
+			$return_list["page"] = $thisPage;
+			$return_list["key"] = $request->key;
+		}else{
+
+			$return_list = array();
+			$return_list["board_top_count"] = $board_top_count;
+			$return_list["board_top_list"] = $board_top_list;
+			
+			$return_list["data"] = $list;
+			$return_list["data2"] = $list;
+			$return_list["number"] = $number;
+			$return_list["key"] = $request->key;
+			$return_list["totalCount"] = $totalCount;
+			$return_list["paging_view"] = $paging_view;
+			$return_list["page"] = $thisPage;
+			$return_list["key"] = $request->key;
+		}
+
+		return view($device == "browser" ? '/sub/notice' : '/m/sub/notice' , $return_list);
 
 	}
 
@@ -347,7 +479,110 @@ class Sub extends Controller
 		   $device = 'browser';
 		}
 
-		return view($device == "browser" ? '/sub/notice_view' : '/m/sub/notice_view' , $request);
+		if($_GET['board_type'] == "notice") {
+			$boardType = "notice";
+		} else if($_GET['board_type'] == "label") {
+			$boardType = "label";
+		} else if($_GET['board_type'] == "pouch") {
+			$boardType = "pouch";
+		} else if($_GET['board_type'] == "inquiry") {
+			$boardType = "inquiry";
+		}
+
+		$paging_option = array(
+			"pageSize" => 10,
+			"blockSize" => 5
+		);
+
+		$thisPage = ($request->page) ? $request->page : 1 ;
+		$paging = new PagingFunction($paging_option);
+
+		$totalQuery = DB::table('board');
+		if($request->key != "") {
+			$totalQuery->where(function($totalQuery) use($request){
+				$totalQuery->where('subject', 'like', '%' . $request->key . '%')
+				->orWhere('contents', 'like', '%' . $request->key . '%');
+			});
+		}
+
+		$totalQuery->where('board_type', $boardType);
+        $totalQuery->where(function($query_set) {
+                $query_set->where('top_type', "<>", 'Y')
+                ->orWhere('top_type', null);
+        });
+
+		if($request->category_type) {
+			$totalQuery->where('category', $request->category_type);
+		}
+
+		if(request()->segment(2) == "ey_data_room" && !$request->category_type) {
+			$totalQuery->where('category', 1);
+		}
+		
+		$query = DB::table('board')
+				->select(DB::raw('*, substr(reg_date, 1, 10) as reg_date_cut'))
+				->orderBy('idx', 'desc');
+				
+		if($request->key != "") {
+			$query->where(function($query) use($request){
+				$query->where('subject', 'like', '%' . $request->key . '%')
+				->orWhere('contents', 'like', '%' . $request->key . '%');
+			});
+		}
+
+		$query->where('board_type', $boardType)
+			  ->where('idx',$request->board_idx);
+        $query->where(function($query_set2) {
+                $query_set2->where('top_type', 'Y')
+                ->orWhere('top_type', null);
+        });
+		
+		//$query->where('top_type', '<>', 'Y');
+		//$query->orWhere('top_type', null);
+		
+		if($request->category_type) {
+			$query->where('category', $request->category_type);
+		}
+
+		if(request()->segment(2) == "ey_data_room" && !$request->category_type) {
+			$query->where('category', 1);
+		}
+
+		$list = $query->take($paging_option["pageSize"])->first();
+		
+		// 게시판 출력 글 번호 계산
+		$board_top_list = DB::table('board') 
+					->select(DB::raw('*, substr(reg_date, 1, 10) as reg_date_cut'))
+					->where('board_type', $boardType)
+					->where('top_type', 'Y')
+					->first();
+
+		// 댓글
+		$board_idx_reply = $_GET['board_idx'];
+		// $board_reply->where(function($query_set3) {
+		// 	$query_set3->where('top_type', 'Y')
+		// 	->orWhere('top_type', null);
+		// });
+
+		$board_reply = DB::table('board') 
+					->select(DB::raw('*'))
+					->where('grp', $list->grp)
+					//->where('reply_name', '<>','')
+					->Where('reply_name', '<>', null)
+					->orderBy('grp','desc')
+					->orderBy('depth','asc')
+					->get();
+					
+
+
+		$return_list = array();
+		$return_list["board_top_list"] = $board_top_list;
+		$return_list["data"] = $list;
+		$return_list["board_reply"] = $board_reply;
+		$return_list["key"] = $request->key;
+
+
+		return view($device == "browser" ? '/sub/notice_view' : '/m/sub/notice_view' , $return_list);
 
 	}
 
@@ -861,6 +1096,178 @@ class Sub extends Controller
 		$return_list["key"] = $request->key;
 		
 		return view('sub/news', $return_list); 
+
+	}
+
+	public function write_board_action(Request $request) {
+
+		// $answer_infom = DB::table('board') 
+		// 			->select(DB::raw('board.grp + 1 as grp_now, board.prino + 1 as prino_now'))
+		// 			->where('board_type', $request->board_type)
+		// 			->orderBy('idx', 'desc')
+		// 			->first();
+
+		// if($board_cnt <= 0) {
+		// 	$prino_now = 1;
+		// 	$grp_now = 1;
+		// } else {
+		// 	$prino_now = $answer_infom->prino_now;
+		// 	$grp_now = $answer_infom->grp_now;
+		// }
+
+		$board_cnt = DB::table('board')
+					// ->where('board_type', $request->board_type)
+					//->where('idx', $request->board_idx)
+					->get()
+					->count();
+
+		$board_infom = DB::table('board')
+					->select(DB::raw('*, board.grp as grp_now, board.depth as depth_now, board.depth2 as depth2_now, board.grp2 as grp2_now, board.prino as prino_now'))
+					//->where('board_type', $request->board_type)
+					->orderBy('idx', 'desc')
+					->first();
+
+		// $answer_infom = DB::table('board')
+		// 			->select(DB::raw('*, board.grp as grp_now, board.prino as prino_now, board.parno as parno_now'))
+		// 			//->where('board_type', $request->board_type)
+		// 			->orderBy('idx', 'desc')
+		// 			->first();
+
+		$reply_answer_infom = DB::table('board') 
+					->select(DB::raw('depth, depth2, grp, grp2'))
+					//->where('board_type', $request->board_type)
+					->where('idx', $request->board_idx)
+					->first();
+
+		if($board_cnt <= 0) {
+			$parno_now = 0;
+			$prino_now = 0;
+			$depth_now = 1;
+			$depth2_now = 1;
+			$grp_now = 1;
+			$grp2_now = 1;
+		} else {
+			//$parno_now = $request->board_idx;
+			$prino_now = $board_infom->prino_now + 1;
+			$depth_now = $board_infom->depth;
+			$depth2_now = $board_infom->depth2;
+			$grp_now = $board_infom->grp_now + 1;
+			$grp2_now = $board_infom->grp2_now;
+		}
+		
+		if($request->reply_type == "reply") {
+			// $parno_now = $request->board_idx;
+			// $prino_now = $reply_answer_infom->prino + 1;
+			$depth_now = $reply_answer_infom->depth;
+			$grp_now = $reply_answer_infom->grp;
+		}
+
+		if($request->writer_file) {
+			$file = $request->writer_file->store('images');
+			$file_array = explode("/", $file);
+			copy("../storage/app/images/".$file_array[1], "./storage/app/images/".$file_array[1]);
+		} else {
+			$file_array[1] = null;
+		}
+
+		if($request->writer_file2) {
+			$file = $request->writer_file2->store('images');
+			$file_array2 = explode("/", $file);
+			copy("../storage/app/images/".$file_array2[1], "./storage/app/images/".$file_array2[1]);
+		} else {
+			$file_array2[1] = null;
+		}
+	// 	// echo $request->idx;
+	// 	// echo $request->board_type;
+	// 	// echo $request->reply;
+	// 	// echo $request->reply_name;
+	// 	// echo $request->reply_content;
+	// 	// echo request()->ip();
+	// 	// echo \Carbon\Carbon::now();
+		if($request->reply_type == 'reply'){
+			DB::table('board')->insert(
+				[
+					'grp' => $grp_now,
+					'grp2' => $grp2_now,
+					'depth' => $depth2_now,
+					'depth2' => $depth2_now,
+					// 'reply_name' => $request->reply_name,
+					// 'reply_name' => $request->reply_name,
+					// 'reply_name' => $request->reply_name,
+					'reply_name' => $request->reply_name,
+					'reply_content' => $request->reply_content,
+					'ip_addr' => request()->ip(),
+					'reg_date' => \Carbon\Carbon::now(),
+				]
+			);
+			echo "<script>alert('글 작성이 완료되었습니다.');location.href = '/';</script>";
+			exit;
+		}else if($request->reply_type == 're_reply'){
+			DB::table('board')->insert(
+				[
+					'grp' => $grp_now,
+					'grp2' => $grp2_now,
+					'depth' => $depth2_now,
+					'depth2' => $depth2_now,
+					// 'reply_name' => $request->reply_name,
+					// 'reply_name' => $request->reply_name,
+					// 'reply_name' => $request->reply_name,
+					'reply_name' => $request->reply_name,
+					'reply_content' => $request->reply_content,
+					'ip_addr' => request()->ip(),
+					'reg_date' => \Carbon\Carbon::now(),
+				]
+			);
+			echo "<script>alert('글 작성이 완료되었습니다.');location.href = '/';</script>";
+			exit;
+		}else{
+
+			DB::table('board')->insert(
+				[
+					'subject' => $request->subject,
+					'contents' => $request->contents,
+					'category' => $request->category,
+					'category2' => $request->category2,
+					'corp_name' => $request->corp_name,
+					'manager_name' => $request->writer,
+					'passwd' => $request->passwd,
+					'tel' => $request->tel,
+					'email' => $request->email,
+					'product_name' => $request->product_name,
+					'material_name' => $request->material_name,
+					'attach_file' => $file_array[1],
+					'attach_file2' => $file_array2[1],
+					'size' => $request->size,
+					'type_set' => $request->type_set,
+					'etc' => $request->etc,
+					'writer' => $request->writer,
+					'ip_addr' => request()->ip(),
+					'board_type' => $request->board_type,
+					'parno' => 0,
+					'prino' => $prino_now,
+					'grp' => $grp_now,
+					'grp2' => $grp2_now,
+					'depth' => $depth_now,
+					'depth2' => $depth2_now,
+					'start_period' => $request->start_period,
+					'end_period' => $request->end_period,
+					'use_status' => $request->use_status,
+					'priority' => $request->priority,
+					'link_value' => $request->link_value,
+					'secret_number' => $request->secret_number,
+					'secret_status' => $request->secret_status,
+					'reg_date' => \Carbon\Carbon::now(),
+				]
+			);
+
+			echo "<script>alert('글 작성이 완료되었습니다.');location.href = '/';</script>";
+			exit;
+		}
+	}
+
+	public function video_view(Request $request) {
+
+		return view('sub/video_view'); 
 
 	}
 

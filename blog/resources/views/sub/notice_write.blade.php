@@ -39,13 +39,17 @@
             });
         </script>
         <div class="notice_write">
-            <form action="">
+            <form action="/sub/notice/write_board_action" name="board_write_form" method="post" enctype="multipart/form-data" >
+            {{ csrf_field() }}
+            <input type="hidden" value="{{ $_GET['board_type'] }}" name="board_type">
+            <input type="hidden" value="Y" name="secret_status">
+            <input type="hidden" value="Y" name="use_status">
                 <div class="write_line">
                     <div class="write_title">
                         <p>업체명</p>
                     </div>
                     <div class="write_input">
-                        <input type="text" name="">
+                        <input type="text" name="corp_name">
                     </div>
                 </div>
                 <div class="write_line">
@@ -53,7 +57,7 @@
                         <p>담당자명</p>
                     </div>
                     <div class="write_input">
-                        <input type="text" name="">
+                        <input type="text" name="writer">
                     </div>
                 </div>
                 <div class="write_line">
@@ -61,7 +65,7 @@
                         <p>비밀번호</p>
                     </div>
                     <div class="write_input">
-                        <input type="password" name="">
+                        <input type="password" name="secret_number">
                     </div>
                 </div>
                 <div class="write_line">
@@ -69,7 +73,7 @@
                         <p>연락처</p>
                     </div>
                     <div class="write_input">
-                        <input type="text" name="">
+                        <input type="text" name="tel">
                     </div>
                 </div>
                 <div class="write_line">
@@ -77,7 +81,7 @@
                         <p>이메일</p>
                     </div>
                     <div class="write_input">
-                        <input type="text" name="">
+                        <input type="text" name="email">
                     </div>
                 </div>
                 <div class="write_line">
@@ -85,7 +89,7 @@
                         <p>제목</p>
                     </div>
                     <div class="write_input">
-                        <input type="text" name="" class="x2">
+                        <input type="text" name="subject" class="x2">
                     </div>
                 </div>
                 <div class="write_line">
@@ -93,7 +97,7 @@
                         <p>내용</p>
                     </div>
                     <div class="write_input">
-                        <textarea name="" style="resize: none;"></textarea>
+                        <textarea name="contents" style="resize: none;"></textarea>
                     </div>
                 </div>
                 <div class="write_line">
@@ -101,7 +105,7 @@
                         <p>링크</p>
                     </div>
                     <div class="write_input">
-                        <input type="text" name="" class="x2">
+                        <input type="text" name="link_value" class="x2">
                     </div>
                 </div>
                 <div class="write_line">
@@ -109,8 +113,8 @@
                         <p>파일1</p>
                     </div>
                     <div class="write_input">
-                        <input type="text" name="" readonly class="x2" id="file2_">
-                        <label for="file2">첨부</label><input type="file" id="file2">
+                        <input type="text" readonly class="x2" id="file2_">
+                        <label for="file2">첨부</label><input type="file" id="file2" name="writer_file">
                     </div>
                 </div>
                 <div class="write_line">
@@ -118,8 +122,8 @@
                         <p>파일2</p>
                     </div>
                     <div class="write_input">
-                        <input type="text" name="" readonly class="x2" id="file3_">
-                        <label for="file3">첨부</label><input type="file" id="file3">
+                        <input type="text" readonly class="x2" id="file3_">
+                        <label for="file3">첨부</label><input type="file" id="file3" name="writer_file2">
                     </div>
                 </div>
                 <div class="write_line last">

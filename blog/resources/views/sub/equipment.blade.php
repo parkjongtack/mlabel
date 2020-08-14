@@ -16,11 +16,23 @@
                 <li @if($_GET['category2'] == '5') class="on" @endif onclick="javascript:location.href='/sub/equipment?category2=5';">파우치제판설비</li>
             </ul>
         </div>
+        <style>
+            .iframe_bg_outer{display: none;}
+            .iframe_bg{position:fixed; top:0; left:0; width:100vw; height: 100vh; background-color: rgba(0,0,0,0.5);z-index:999;}
+            iframe{position:fixed; top:50%; left:50%; transform:translate(-50%,-50%); width:80vw; height:40vw; min-width:800px; min-height:400px;z-index:999; border: 0;}
+            .close_btn{color: #fff; font-size: 30px; position: fixed; top: 10vh;left: 90vw;}
+        </style>
+        <div class="iframe_bg_outer">
+            <div class="iframe_bg">
+                <div class="close_btn"><i class="far fa-window-close" style="cursor: pointer"></i></div>
+                <iframe src="" id="video_view"></iframe>
+            </div>
+        </div>
         <div class="equipment sub_layout on">
             @foreach($board_equipment as $board_equipment)
 			<div class="equipment_list">
                 <div class="img_area">
-                    <img src="/storage/app/images/{{ $board_equipment->attach_file }}" alt="">
+                    <img src="https://img.youtube.com/vi/{{ $board_equipment->link_key }}/0.jpg" alt="">
                 </div>
                 <div class="text_area">
                     <h2>{{ $board_equipment->subject }}</h2>
@@ -29,11 +41,22 @@
                     <!-- <p>동판이 필요없는 파우치 인쇄 장비입니다.</p>
                     <p>소량 다품종에 최적화 되었으며 최고의 퀄리티를 자랑합니다.</p> -->
 					{!! $board_equipment->contents !!}
-                    <a href="#none">영상보기</a>
+                    <a href="#none" onclick="javascript:video_view_src('{{ $board_equipment->link_value }}');">영상보기</a>
                 </div>
             </div>
 			@endforeach
         </div>
+        <script>
+            $('.close_btn').click(function(){
+                $(".iframe_bg_outer").hide(500);
+            });
+                function video_view_src(src) {
+                    $("#video_view").attr("src",src);
+
+                    $(".iframe_bg_outer").show(500);
+                }
+
+        </script>
             <!-- <div class="equipment_list">
                 <div class="img_area">
                     <img src="/img/sample_img1.png" alt="">

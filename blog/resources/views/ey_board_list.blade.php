@@ -34,7 +34,11 @@
 					@if(request()->segment(2) != 'section' && request()->segment(2) != 'label' && request()->segment(2) != 'pouch' && request()->segment(2) != 'inquiry' && request()->segment(2) != 'notice' && request()->segment(2) != 'equipment' && request()->segment(2) != 'sale_label' && request()->segment(2) != 'sale_pouch')
 					<th>우선순위</th>
 					@endif
-                    <th>사용여부</th>
+					@if(request()->segment(2) == 'pouch' || request()->segment(2) == 'label' || request()->segment(2) == 'inquiry')
+					<th>답변여부</th>
+					@else
+					<th>사용여부</th>
+					@endif
                     <th>기능</th>
                 </tr>
             </thead>
@@ -65,11 +69,20 @@
 							</td>
 							@endif
 							<td>
-								@if($data->use_status == 'Y')
-									사용
+								@if(request()->segment(2) == 'pouch' || request()->segment(2) == 'label' || request()->segment(2) == 'inquiry')
+									@if($data->use_status == 'Y')
+										답변완료
+									@else
+										미답변
+									@endif
 								@else
-									중지
+									@if($data->use_status == 'Y')
+										사용
+									@else
+										중지
+									@endif
 								@endif
+								
 							</td>
 							<td class="delete_box"><a href="javascript:control('{{ $data->idx }}');">삭제</a><a href="/ey_admin/{{ request()->segment(2) }}/write_board_form/modify?board_idx={{ $data->idx }}" style="background-color: #08AEEA; border:1px solid #0faeea; color: #fff;">수정</a></td>
 						</tr>

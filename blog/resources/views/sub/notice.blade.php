@@ -9,44 +9,25 @@
     <div class="inner">
         <div class="sub_nav">
             <ul>
-                <li><a href="/sub/notice1">공지사항</a></li>
-                <li><a href="/sub/inquiry1">라벨인쇄 견적문의</a></li>
-                <li><a href="/sub/inquiry2">파우치 견적문의</a></li>
-                <li><a href="/sub/notice2">문의사항</a></li>
+                <li><a href="/sub/notice?board_type=notice">공지사항</a></li>
+                <li><a href="/sub/notice?board_type=label">라벨인쇄 견적문의</a></li>
+                <li><a href="/sub/notice?board_type=pouch">파우치 견적문의</a></li>
+                <li><a href="/sub/notice?board_type=inquiry">문의사항</a></li>
             </ul>
         </div>
         <script>
             $(function(){
-                var url = "{{request()->segment(2)}}";
-                switch (url){
-                    case "notice1":
-                        $(".sub_nav li").eq(0).addClass("on");
-                        break;
-
-                    case "inquiry1":
-                        $(".sub_nav li").eq(1).addClass("on");
-                        break;
-
-                    case "inquiry2":
-                        $(".sub_nav li").eq(2).addClass("on");
-                        break;
-
-                    case "notice2":
-                        $(".sub_nav li").eq(3).addClass("on");
-                        break;
-                }
-
                 var url = "{{ $_GET['board_type'] }}";
                 switch (url){
                     case "notice":
                         $(".sub_nav li").eq(0).addClass("on");
                         break;
 
-                    case "sale_label":
+                    case "label":
                         $(".sub_nav li").eq(1).addClass("on");
                         break;
 
-                    case "sale_pouch":
+                    case "pouch":
                         $(".sub_nav li").eq(2).addClass("on");
                         break;
 
@@ -54,20 +35,22 @@
                         $(".sub_nav li").eq(3).addClass("on");
                         break;
                 }
-
             });
         </script>
         {{--공지사항,문의사항--}}
         <div class="notice_table">
-            <form action="">
-                <select name="" id="">
-                    <option value="" selected>제목</option>
-                    <option value="" selected>작성자</option>
+            <form action="/sub/notice?board_type={{ $_GET['board_type'] }}" name="board_write_form" method="get" enctype="multipart/form-data">
+                    
+                    <input type="hidden" value="{{ $_GET['board_type'] }}" name="board_type">
+                    <input type="hidden" value="search" name="search">
+                <select name="search_type" id="">
+                    <option value="subject" selected>제목</option>
+                    <option value="writer">작성자</option>
                 </select>
-                <input type="text">
+                <input type="text" name="search_word">
                 <input type="submit" value="검색">
             </form>
-            @if(request()->segment(2) == "notice1" || request()->segment(2) == "notice2")
+            @if($_GET['board_type'] == "notice" || $_GET['board_type'] == "inquiry")
             <table>
                 <colgroup>
                     <col width=120>
@@ -81,20 +64,31 @@
                     <th>작성자</th>
                     <th>작성일</th>
                 </tr>
+                @foreach($data as $data)
+                    @if($data->top_type == 'Y')
                 <tr class="top_notice">
                     <td>공지</td>
-                    <td><a href="#none">[필독] 파우치 인쇄 견적 문의 시 필요사항</a></td>
+                    
+                    <td><a href="/sub/notice_view?board_type={{ $_GET['board_type'] }}&board_idx={{ $data->idx }}">{{ $data->subject }}</a></td>
                     <td>명성파우치(주)</td>
-                    <td>2020.02.01</td>
+                    <td>{{ substr($data->reg_date, 0 ,10) }}</td>
                 </tr>
+                    @else
                 <tr>
-                    <td>15</td>
-                    <td><a href="#none">스파우트파치 견적 문의드립니다.</a></td>
-                    <td>박**</td>
-                    <td>2020.02.01</td>
+                    <td>{{ $number-- }}</td>
+                    
+                    <td><a href="/sub/notice_view?board_type={{ $_GET['board_type'] }}&board_idx={{ $data->idx }}">{{ $data->subject }}</a></td>
+                        @if($data->writer == 'admin')
+                    <td>명성파우치(주)</td>
+                        @else
+                    <td>{{ $data->manager_name }}</td>
+                        @endif
+                    <td>{{ substr($data->reg_date, 0 ,10) }}</td>
                 </tr>
+                    @endif
+                @endforeach
             </table>
-            @else
+                @else
             <table>
                 <colgroup>
                     <col width=120>
@@ -110,32 +104,34 @@
                     <th>작성일</th>
                     <th>진행상태</th>
                 </tr>
+                @foreach($data as $data)
+                @if($data->top_type == 'Y')
                 <tr class="top_notice">
                     <td>공지</td>
-                    <td><a href="#none">[필독] 파우치 인쇄 견적 문의 시 필요사항</a></td>
-                    <td>명성파우치(주)</td>
-                    <td>2020.02.01</td>
+                    <td><a href="/sub/notice_view?board_type={{ $_GET['board_type'] }}&board_idx={{ $data->idx }}">{{ $data->subject }}</a></td>
+                    <td>{{ $data->writer }}</td>
+                    <td>{{ substr($data->reg_date, 0 ,10) }}</td>
                     <td></td>
                 </tr>
+                @else
                 <tr>
-                    <td>15</td>
-                    <td><a href="#none">스파우트파치 견적 문의드립니다.</a></td>
-                    <td>박**</td>
-                    <td>2020.02.01</td>
-                    <td class="not_end"><span>접수</span></td>
-                </tr>
-                <tr>
-                    <td>15</td>
-                    <td><a href="#none">스파우트파치 견적 문의드립니다.</a></td>
-                    <td>박**</td>
-                    <td>2020.02.01</td>
+                    <td>{{ $number-- }}</td>
+                    <td><a href="/sub/notice_view?board_type={{ $_GET['board_type'] }}&board_idx={{ $data->idx }}">{{ $data->subject }}</a></td>
+                    <td>{{ $data->writer }}</td>
+                    <td>{{ substr($data->reg_date, 0 ,10) }}</td>
+                    @if($data->use_status == 'Y')
                     <td class="the_end"><span>답변완료</span></td>
+                    @else
+                    <td class="not_end"><span>접수</span></td>
+                    @endif
                 </tr>
+                @endif
+                @endforeach
             </table>
             @endif
-            @if(request()->segment(2) != "notice1")
+            @if($_GET['board_type'] != "notice")
                 <div class="write_box">
-                    <a href="/sub/notice_write">글쓰기</a>
+                    <a href="/sub/notice_write?board_type={{ $_GET['board_type'] }}">글쓰기</a>
                 </div>
             @endif
             <div class="paging">

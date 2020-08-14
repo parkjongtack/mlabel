@@ -244,7 +244,7 @@ a,p,span,h1,h2,h3,h4,h5,h6,td,th{transform:skew(-0.03deg);}
 .sub_sec.product .sec_title{background-image: url(/img/sub_company_bg3.png);}
 .product .sub_nav{top: -54px;}
 .product .sub_nav li{width: 25%; border-bottom: 1px solid #fff;}
-.product .sale_con ul{display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap;}
+.product .sale_con ul{display: flex; align-items: flex-start; justify-content: space-between; flex-wrap: wrap;}
 .product .sale_con li{display: block; width: 160px; border: 1px solid #ddd;}
 .product .sale_con li .sale_text_box{padding-bottom: 10px;}
 .product .sale_con li:hover{border: 1px solid #31669b;}
@@ -267,3 +267,16 @@ a,p,span,h1,h2,h3,h4,h5,h6,td,th{transform:skew(-0.03deg);}
 .product_detail .info_nav a{border: 1px solid #c0c0c0; font-size: 14px; color: #4f4f4f; float: right; text-align: center; margin-left: 10px; display: inline-block; width: 50px; height: 30px; line-height: 30px; margin-top: 20px;}
 .product_detail .info_detail{margin-top: 140px;}
 .product_detail .info_detail h3{text-align: center; font-size: 24px; color: #4f4f4f; margin-bottom: 20px;}
+
+/*equipment*/
+/* .sub_sec.equipment .sec_title{background-image: url(/img/sub_company_bg3.png);} */
+.equipment .img_area,.equipment .text_area{display: inline-block; vertical-align: middle;}
+.equipment .img_area{border: 1px solid #31669b; width: 100%; height: 120px; margin-left: 0;}
+.equipment .text_area{margin-left: 0; width: 100%;}
+.equipment_list{margin: 25px 0;}
+.equipment_list h2{font-size: 22px; color: #000; margin: 10px 0;}
+.equipment_list p.sub_title{font-size: 22px;}
+.equipment_list p{color: #4f4f4f; font-size: 14px; line-height: 20px;}
+.equipment_list a{color: #4f4f4f; font-size: 18px;text-align: center; width: 100%;padding: 10px 0; display: block; border: 1px solid #31669b; font-weight: bold; margin-top: 25px;}
+.equipment_list .line{width: 32px; background-color: #3473af; height: 1px;margin: 10px 0 20px;}
+

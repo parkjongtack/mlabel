@@ -297,7 +297,7 @@ class Ey_admin extends Controller
 					->get()
 					->count();
 
-		$answer_infom = DB::table('board') 
+		$answer_infom = DB::table('board')
 					->select(DB::raw('*, board.grp as grp_now, board.prino as prino_now, board.parno as parno_now'))
 					//->where('board_type', $request->board_type)
 					->orderBy('priority', 'asc')
@@ -481,6 +481,7 @@ class Ey_admin extends Controller
 						'priority' => $request->priority,
 						'link_value' => $request->link_value,
 						'reg_date' => \Carbon\Carbon::now(),
+						'top_type'  => $request->top_type,
 					]
 				);
 			
@@ -1050,7 +1051,7 @@ class Ey_admin extends Controller
 
 		$totalQuery->where('board_type', $boardType);
         $totalQuery->where(function($query_set) {
-                $query_set->where('top_type', '<>', 'Y')
+                $query_set->where('top_type', 'Y')
                 ->orWhere('top_type', null);
         });
 
@@ -1079,7 +1080,7 @@ class Ey_admin extends Controller
 
 		$query->where('board_type', $boardType);
         $query->where(function($query_set2) {
-                $query_set2->where('top_type', '<>', 'Y')
+                $query_set2->where('top_type', 'Y')
                 ->orWhere('top_type', null);
         });
 		

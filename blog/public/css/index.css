@@ -250,7 +250,8 @@ a,p,span,h1,h2,h3,h4,h5,h6,td,th{letter-spacing: -0.5px;transform:skew(-0.03deg)
 .sub_sec.equipment .sec_title{background-image: url(/img/sub_company_bg3.png);}
 .equipment .sub_nav li{width: 20%;}
 .equipment .img_area,.equipment .text_area{display: inline-block; vertical-align: middle;}
-.equipment .img_area{border: 1px solid #31669b; width: 573px; height: 313px; margin-left: 95px;}
+.equipment .img_area{border: 1px solid #31669b; width: 573px; height: 313px; margin-left: 95px;overflow: hidden;}
+.equipment .img_area img{width: 100%; position: relative; top: 50%; transform: translateY(-50%);}
 .equipment .text_area{margin-left: 70px; width: 432px;}
 .equipment_list{margin-bottom: 65px;}
 .equipment_list h2{font-size: 28px; color: #000;}

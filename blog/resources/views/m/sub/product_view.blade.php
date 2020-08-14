@@ -10,34 +10,34 @@
         <div class="product_detail">
             <div class="info_outer">
                 <div class="img_area">
-                    <img src="/img/sale_img1.png" alt="">
+                    <img src="/storage/app/images/{{ $board_array->attach_file }}" alt="">
                 </div>
                 <div class="text_area">
-                    <h2>짜먹는 청귤 젤리</h2>
+                    <h2>{{ $board_array->subject }}</h2>
                     <div class="info_box">
                         <div class="info_line">
                             <p class="info_title">업체명</p>
-                            <p class="info_text">명성라벨</p>
+                            <p class="info_text">{{ $board_array->corp_name }}</p>
                         </div>
                         <div class="info_line">
                             <p class="info_title">제품명</p>
-                            <p class="info_text">짜먹는 청귤 젤리</p>
+                            <p class="info_text">{{ $board_array->product_name }}</p>
                         </div>
                         <div class="info_line">
                             <p class="info_title">재질</p>
-                            <p class="info_text">PET + AL + NY + LLDPE</p>
+                            <p class="info_text">{{ $board_array->material_name }}</p>
                         </div>
                         <div class="info_line">
                             <p class="info_title">사이즈</p>
-                            <p class="info_text">90 * 130 * 50</p>
+                            <p class="info_text">{{ $board_array->size }}</p>
                         </div>
                         <div class="info_line">
                             <p class="info_title">유형</p>
-                            <p class="info_text">스탠드 스파우트 파우치</p>
+                            <p class="info_text">{{ $board_array->type_set }}</p>
                         </div>
                         <div class="info_line">
                             <p class="info_title">기타</p>
-                            <p class="info_text"></p>
+                            <p class="info_text">{{ $board_array->etc }}</p>
                         </div>
                     </div>
                     <a href="#none">견적문의</a>

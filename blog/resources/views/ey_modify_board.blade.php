@@ -494,15 +494,25 @@
 					</div>					
 				<div class="cate_file_append_sub"></div>
 			@endif
-            </span>
+			</span>
+			
 				<div class="write_line cate_file">
 					<div class="all_line">
 						<div class="line_title">
+							@if(request()->segment(2) == 'pouch' || request()->segment(2) == 'label' || request()->segment(2) == 'inquiry')
+							답변여부
+							@else
 							노출여부
+							@endif
 						</div>
 						<div class="line_content">
+							@if(request()->segment(2) == 'pouch' || request()->segment(2) == 'label' || request()->segment(2) == 'inquiry')
+							<label for="see1"><input type="radio" id="see1" name="use_status" value="Y" @if($data->use_status == 'Y') checked @endif > 답변완료</label>
+<label for="see2"><input type="radio" id="see2" name="use_status" value="N" @if($data->use_status == 'N') checked @endif > 미답변</label>
+							@else
 							<label for="see1"><input type="radio" id="see1" name="use_status" value="Y" @if($data->use_status == 'Y') checked @endif > 사용</label>
 							<label for="see2"><input type="radio" id="see2" name="use_status" value="N" @if($data->use_status == 'N') checked @endif > 중지</label>
+							@endif
 						</div>
 					</div>
 				</div>
@@ -752,13 +762,13 @@
 			}
 
 
-			@if(!$data->attach_file)
-				if(form.writer_file.value == "") {
-					alert('이미지를 선택해주세요.');
-					form.writer_file.focus();
-					return false;
-				}
-			@endif
+			// @if(!$data->attach_file)
+			// 	if(form.writer_file.value == "") {
+			// 		alert('이미지를 선택해주세요.');
+			// 		form.writer_file.focus();
+			// 		return false;
+			// 	}
+			// @endif
 
 		@endif
 
